@@ -2236,11 +2236,6 @@ ul {
 
 /* --- Small Mobile (≤ 480px) --- */
 @media (max-width: 480px) {
-  /* Hero */
-  .hero {
-    padding-top: 4.5rem;
-  }
-
   /* Buttons — ensure touch target */
   .btn {
     min-height: 44px;
