@@ -3,7 +3,12 @@ import { X, CheckCircle, Loader2 } from 'lucide-react';
 import { submitToSheets } from '../utils/googleSheets';
 
 const FreeAuditModal = ({ isOpen, onClose }) => {
-  const [form, setForm] = useState({ url: '', websiteName: '', email: '', phone: '' });
+  const [form, setForm] = useState({
+    url: '',
+    websiteName: '',
+    email: '',
+    phone: '',
+  });
   const [status, setStatus] = useState('idle'); // idle | loading | success | error
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -20,18 +25,17 @@ const FreeAuditModal = ({ isOpen, onClose }) => {
 
     const { success, message } = await submitToSheets({
       formType: 'Free Audit',
-      name: form.websiteName,
+      websiteUrl: form.url,
+      websiteName: form.websiteName,
       email: form.email,
       phone: form.phone,
-      url:form.url,
-      websiteName: form.websiteName,
     });
 
     if (success) {
       setStatus('success');
     } else {
       setStatus('error');
-      setErrorMsg(message);
+      setErrorMsg(message || 'Something went wrong');
     }
   };
 
@@ -45,35 +49,36 @@ const FreeAuditModal = ({ isOpen, onClose }) => {
   return (
     <div className="modal-overlay" onClick={handleClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={handleClose} aria-label="Close modal">
+        <button className="modal-close" onClick={handleClose} aria-label="Close modal" type="button">
           <X size={24} />
         </button>
+
         <h2 className="modal-title">Free Website Audit</h2>
 
-        {status === "success" ? (
-  <div style={{ textAlign: "center", padding: "1.5rem 0" }}>
-    <CheckCircle size={52} color="#22c55e" style={{ margin: "0 auto 1rem" }} />
-    <h3 style={{ fontSize: "1.25rem", fontWeight: 700, marginBottom: "0.5rem" }}>
-      Request Submitted! 🎉
-    </h3>
-    <p style={{ color: "#6b7280", marginBottom: "1.5rem" }}>
-      We'll audit your website and send you a detailed report within 48 hours.
-    </p>
+        {status === 'success' ? (
+          <div style={{ textAlign: 'center', padding: '1.5rem 0' }}>
+            <CheckCircle size={52} color="#22c55e" style={{ margin: '0 auto 1rem' }} />
+            <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.5rem' }}>
+              Request Submitted! 🎉
+            </h3>
+            <p style={{ color: '#6b7280', marginBottom: '1.5rem' }}>
+              We'll audit your website and send you a detailed report within 48 hours.
+            </p>
 
-    <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
-      <button
-        className="btn btn-secondary submit-btn"
-        onClick={() => setStatus("idle")}
-        type="button"
-      >
-        Back
-      </button>
-      <button className="btn btn-primary submit-btn" onClick={handleClose} type="button">
-        Close
-      </button>
-    </div>
-  </div>
-) : (
+            <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
+              <button
+                className="btn btn-secondary submit-btn"
+                onClick={() => setStatus('idle')}
+                type="button"
+              >
+                Back
+              </button>
+              <button className="btn btn-primary submit-btn" onClick={handleClose} type="button">
+                Close
+              </button>
+            </div>
+          </div>
+        ) : (
           <form className="audit-form" onSubmit={handleSubmit}>
             <div className="form-group">
               <label>Website URL *</label>
@@ -136,7 +141,12 @@ const FreeAuditModal = ({ isOpen, onClose }) => {
               type="submit"
               className="btn btn-primary submit-btn"
               disabled={status === 'loading'}
-              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.5rem',
+              }}
             >
               {status === 'loading' ? (
                 <>
@@ -154,4 +164,4 @@ const FreeAuditModal = ({ isOpen, onClose }) => {
   );
 };
 
-export default FreeAuditModal;
+export default FreeAuditModal; 

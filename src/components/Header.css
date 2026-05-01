@@ -1,0 +1,362 @@
+/* ═══════════════════════════════════════════════════════════════
+   HEADER / NAVBAR
+   All class names are scoped to .header-* to avoid global conflicts
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Core bar ── */
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* Above page content (sections, cards) — below modals (9000) and fixed overlays */
+  z-index: 100;
+  background: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  /* GPU compositing: promotes to its own layer, prevents repaint flicker */
+  transform: translateZ(0);
+  will-change: box-shadow, background-color;
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.header.scrolled {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08), 0 1px 0 rgba(0, 0, 0, 0.04);
+  border-bottom-color: transparent;
+}
+
+/* ── Inner row — fixed height, zero layout shift on scroll ── */
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+/* ── Logo ── */
+.header-logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  outline-offset: 4px;
+}
+
+.header-logo img {
+  height: 46px;
+  width: auto;
+  max-width: 180px;
+  object-fit: contain;
+  display: block;
+  /* Use transform instead of height to avoid layout reflow on scroll */
+  transform-origin: left center;
+  transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+.header.scrolled .header-logo img {
+  /* scale(0.87) ≈ 40/46 — same visual result, zero reflow */
+  transform: scale(0.87);
+}
+
+.header-logo:hover img {
+  opacity: 0.82;
+}
+
+/* ── Desktop navigation ── */
+.header-nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.header-nav-list {
+  display: flex;
+  list-style: none;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.header-nav-list li a {
+  display: block;
+  text-decoration: none;
+  color: #475569;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 8px;
+  position: relative;
+  white-space: nowrap;
+  transition: color 0.2s ease, background 0.2s ease;
+  letter-spacing: 0.01em;
+}
+
+.header-nav-list li a::after {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  left: 0.75rem;
+  right: 0.75rem;
+  height: 2px;
+  background: linear-gradient(90deg, #f97316, #fb923c);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header-nav-list li a:hover {
+  color: #f97316;
+  background: rgba(249, 115, 22, 0.06);
+}
+
+.header-nav-list li a.active {
+  color: #ea580c;
+  background: rgba(249, 115, 22, 0.08);
+}
+
+.header-nav-list li a:hover::after,
+.header-nav-list li a.active::after {
+  transform: scaleX(1);
+}
+
+/* ── Desktop CTA buttons ── */
+.header-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.header-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  padding: 0.575rem 1.125rem;
+  border-radius: 9999px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.01em;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease,
+    border-color 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  white-space: nowrap;
+  line-height: 1;
+  outline-offset: 3px;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.header-btn:focus-visible {
+  outline: 2px solid #f97316;
+}
+
+.header-btn-outline {
+  background: transparent;
+  border: 1.5px solid rgba(249, 115, 22, 0.35);
+  color: #ea580c;
+}
+
+.header-btn-outline:hover {
+  background: #fff7ed;
+  border-color: #f97316;
+  transform: translateY(-1px);
+}
+
+.header-btn-primary {
+  background: linear-gradient(135deg, #f97316 0%, #ef4444 85%);
+  color: #ffffff;
+  box-shadow: 0 3px 12px rgba(249, 115, 22, 0.28);
+}
+
+.header-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.38);
+}
+
+/* Full-width variant for mobile buttons */
+.header-btn-full {
+  width: 100%;
+  justify-content: center;
+  padding: 0.8rem 1.25rem;
+  font-size: 0.95rem;
+}
+
+/* ── Hamburger — mobile only (default hidden) ── */
+.header-hamburger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 10px;
+  color: #1e293b;
+  line-height: 0;
+  transition: background 0.2s ease;
+  flex-shrink: 0;
+}
+
+.header-hamburger:hover {
+  background: #f1f5f9;
+}
+
+.header-hamburger:active {
+  background: #e2e8f0;
+}
+
+/* ── Mobile backdrop overlay ── */
+.header-mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  /* sits above header (100) so overlay covers the whole screen including header area */
+  z-index: 150;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.header-mobile-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ── Mobile slide-in drawer ── */
+.header-mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(82vw, 320px);
+  background: #ffffff;
+  z-index: 160;
+  transform: translateX(102%);
+  transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 5rem 1.25rem 2rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  box-shadow: -8px 0 48px rgba(0, 0, 0, 0.15);
+}
+
+.header-mobile-drawer.open {
+  transform: translateX(0);
+}
+
+/* ── Mobile nav list ── */
+.header-mobile-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.header-mobile-nav-list li a {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  text-decoration: none;
+  color: #1e293b;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.header-mobile-nav-list li a:hover,
+.header-mobile-nav-list li a.active {
+  background: #fff7ed;
+  color: #f97316;
+}
+
+/* ── Mobile action buttons ── */
+.header-mobile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f1f5f9;
+  margin-top: auto;
+}
+
+/* ═══════════════════════════════
+   RESPONSIVE BREAKPOINTS
+   ═══════════════════════════════ */
+
+/* Medium desktop — tighten nav link spacing */
+@media (max-width: 1100px) {
+  .header-nav-list li a {
+    padding: 0.45rem 0.6rem;
+    font-size: 0.84rem;
+  }
+
+  .header-btn {
+    padding: 0.525rem 0.9rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Tablet / mobile breakpoint */
+@media (max-width: 900px) {
+  .header-nav,
+  .header-actions {
+    display: none;
+  }
+
+  .header-hamburger {
+    display: flex;
+  }
+
+  .header-inner {
+    height: 64px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .header-inner {
+    padding: 0 1rem;
+    height: 58px;
+  }
+
+  .header-logo img {
+    height: 38px;
+  }
+
+  /* scrolled: scale instead of height change */
+  .header.scrolled .header-logo img {
+    transform: scale(0.89);
+  }
+
+  .header-mobile-drawer {
+    width: min(90vw, 300px);
+    padding: 4.5rem 1rem 1.5rem;
+  }
+
+  .header-mobile-nav-list li a {
+    padding: 0.75rem 0.875rem;
+    font-size: 0.95rem;
+  }
+}

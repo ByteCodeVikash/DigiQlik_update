@@ -38,13 +38,13 @@ const ScheduleMeetingModal = ({ isOpen, onClose }) => {
     setStatus("loading");
     setErrorMsg("");
 
-    const { success, message } = await submitToSheets({
-      formType: "Schedule Meeting",
-      name,
-      number,
-      email,
-      "company name": companyName,
-    });
+   const { success, message } = await submitToSheets({
+  formType: "Schedule Meeting",
+  name,
+  number,
+  email,
+  companyName,
+});
 
     if (success) {
       setStatus("success");

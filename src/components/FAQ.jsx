@@ -91,17 +91,17 @@ const FAQ = () => {
           font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
         }
 
-        .container {
+        .faq-section .container {
           max-width: 1240px;
           margin: 0 auto;
         }
 
-        .section-header {
+        .faq-section .section-header {
           text-align: center;
           margin-bottom: 2rem;
         }
 
-        .section-tag {
+        .faq-section .section-tag {
           display: inline-flex;
           align-items: center;
           justify-content: center;
@@ -117,7 +117,7 @@ const FAQ = () => {
           margin-bottom: 1rem;
         }
 
-        .section-title {
+        .faq-section .section-title {
           margin: 0;
           font-size: clamp(2rem, 4vw, 3rem);
           line-height: 1.1;
@@ -126,7 +126,7 @@ const FAQ = () => {
           color: #f8fafc;
         }
 
-        .section-subtitle {
+        .faq-section .section-subtitle {
           max-width: 720px;
           margin: 0.9rem auto 0;
           font-size: 1rem;
@@ -134,13 +134,13 @@ const FAQ = () => {
           color: #94a3b8;
         }
 
-        .services-grid {
+        .faq-section .services-grid {
           display: grid;
           grid-template-columns: repeat(3, minmax(0, 1fr));
           gap: 1.25rem;
         }
 
-        .service-card {
+        .faq-section .service-card {
           overflow: hidden;
           border-radius: 22px;
           background: rgba(15,23,42,0.72);
@@ -151,22 +151,24 @@ const FAQ = () => {
           display: flex;
           flex-direction: column;
           min-height: 100%;
+          border-top: none;
         }
 
-        .service-card:hover {
+        .faq-section .service-card:hover {
           transform: translateY(-6px);
           border-color: rgba(129,140,248,0.35);
           box-shadow: 0 22px 44px -18px rgba(0,0,0,0.65);
+          border-top-color: transparent;
         }
 
-        .service-image-wrapper {
+        .faq-section .service-image-wrapper {
           position: relative;
           aspect-ratio: 16 / 10;
           overflow: hidden;
           background: #0b1120;
         }
 
-        .service-image {
+        .faq-section .service-image {
           width: 100%;
           height: 100%;
           object-fit: cover;
@@ -175,11 +177,11 @@ const FAQ = () => {
           transition: transform 0.5s ease;
         }
 
-        .service-card:hover .service-image {
+        .faq-section .service-card:hover .service-image {
           transform: scale(1.06);
         }
 
-        .service-overlay {
+        .faq-section .service-overlay {
           position: absolute;
           inset: 0;
           background: linear-gradient(
@@ -191,7 +193,7 @@ const FAQ = () => {
           pointer-events: none;
         }
 
-        .service-content {
+        .faq-section .service-content {
           display: flex;
           flex-direction: column;
           gap: 0.85rem;
@@ -199,7 +201,7 @@ const FAQ = () => {
           flex: 1;
         }
 
-        .service-icon {
+        .faq-section .service-icon {
           width: 54px;
           height: 54px;
           border-radius: 16px;
@@ -210,9 +212,12 @@ const FAQ = () => {
           color: #c4b5fd;
           border: 1px solid rgba(129,140,248,0.18);
           flex-shrink: 0;
+          margin-bottom: 0;
+          margin-top: 0;
+          position: static;
         }
 
-        .service-title {
+        .faq-section .service-title {
           margin: 0;
           font-size: 1.1rem;
           line-height: 1.35;
@@ -221,7 +226,7 @@ const FAQ = () => {
           letter-spacing: -0.01em;
         }
 
-        .service-desc {
+        .faq-section .service-desc {
           margin: 0;
           font-size: 0.95rem;
           line-height: 1.7;
@@ -229,7 +234,7 @@ const FAQ = () => {
           flex: 1;
         }
 
-        .service-link {
+        .faq-section .service-link {
           display: inline-flex;
           align-items: center;
           gap: 0.45rem;
@@ -242,21 +247,21 @@ const FAQ = () => {
           transition: color 0.2s ease, transform 0.2s ease;
         }
 
-        .service-link:hover {
+        .faq-section .service-link:hover {
           color: #ddd6fe;
           transform: translateX(2px);
         }
 
-        .service-link svg {
+        .faq-section .service-link svg {
           transition: transform 0.2s ease;
         }
 
-        .service-link:hover svg {
+        .faq-section .service-link:hover svg {
           transform: translateX(2px);
         }
 
         @media (max-width: 1024px) {
-          .services-grid {
+          .faq-section .services-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
           }
         }
@@ -266,16 +271,16 @@ const FAQ = () => {
             padding: 2.5rem 0.9rem;
           }
 
-          .services-grid {
+          .faq-section .services-grid {
             grid-template-columns: 1fr;
             gap: 1rem;
           }
 
-          .section-subtitle {
+          .faq-section .section-subtitle {
             font-size: 0.95rem;
           }
 
-          .service-content {
+          .faq-section .service-content {
             padding: 1.15rem;
           }
         }

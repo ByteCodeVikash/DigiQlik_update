@@ -56,7 +56,7 @@ const Process = () => {
           z-index: 1;
         }
 
-        .section-header {
+        .process-container .section-header {
           text-align: center;
           margin-bottom: 40px;
           max-width: 760px;
@@ -64,7 +64,7 @@ const Process = () => {
           margin-right: auto;
         }
 
-        .section-tag {
+        .process-container .section-tag {
           display: inline-block;
           padding: 8px 16px;
           border-radius: 999px;
@@ -77,7 +77,7 @@ const Process = () => {
           margin-bottom: 16px;
         }
 
-        .section-title {
+        .process-container .section-title {
           font-size: clamp(2rem, 4vw, 3.4rem);
           line-height: 1.1;
           margin: 0 0 14px;
@@ -85,7 +85,7 @@ const Process = () => {
           color: #f8fafc;
         }
 
-        .section-subtitle {
+        .process-container .section-subtitle {
           font-size: clamp(1rem, 1.8vw, 1.1rem);
           color: #cbd5e1;
           line-height: 1.7;
@@ -158,7 +158,7 @@ const Process = () => {
             grid-template-columns: 1fr;
           }
 
-          .section-header {
+          .process-container .section-header {
             margin-bottom: 24px;
           }
 
@@ -167,7 +167,7 @@ const Process = () => {
             padding: 24px 20px;
           }
 
-          .section-tag {
+          .process-container .section-tag {
             font-size: 13px;
             padding: 7px 14px;
           }

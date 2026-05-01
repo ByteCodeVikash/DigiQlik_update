@@ -1,32 +1,29 @@
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzGkdKTX8YCNMKl6v0okPE7qqKrTDA8yu3oRlu-R-kV05k4QMgX6N9bQxLTHAtWhoU/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx8rTsfdjYMwxzJWcNNlol-c1aBsIiLn4yydji2Z-YySf79hPJdF_mfWziNKBK2Mjk/exec";
 
 export async function submitToSheets(payload) {
   try {
-    const response = await fetch(SCRIPT_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "text/plain;charset=utf-8",
-      },
-      body: JSON.stringify(payload),
+    const formBody = new URLSearchParams();
+
+    Object.entries(payload).forEach(([key, value]) => {
+      formBody.append(key, value ?? "");
     });
 
-    const text = await response.text();
+    const res = await fetch(SCRIPT_URL, {
+      method: "POST",
+      body: formBody,
+    });
 
-    let data;
+    const text = await res.text();
+
     try {
-      data = JSON.parse(text);
+      return JSON.parse(text);
     } catch {
-      data = { success: false, message: text || "Invalid response from server" };
+      return { success: false, message: text || "Invalid response from server" };
     }
-
-    return {
-      success: !!data.success,
-      message: data.message || "Submitted successfully",
-    };
   } catch (error) {
     return {
       success: false,
-      message: error.message || "Network error",
+      message: error?.message || "Failed to fetch",
     };
   }
 }

@@ -17,13 +17,13 @@ const Contact = () => {
     setStatus("loading");
     setErrorMsg("");
 
-    const { success, message } = await submitToSheets({
-      formType: "Contact",
-      name: form.name,
-      email: form.email,
-      phone: form.phone,
-      message: form.message,
-    });
+  const { success, message } = await submitToSheets({
+  formType: "Contact",
+  name: form.name,
+  email: form.email,
+  phone: form.phone,
+  message: form.message,
+});
 
     if (success) {
       setStatus("success");
