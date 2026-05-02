@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { ArrowRight, Target, Menu, X, Phone } from "lucide-react";
 import logoImage from "/logo.png";
@@ -57,6 +58,69 @@ const Header = ({ onBookCall }) => {
 
   const closeMobile = () => setIsMobileMenuOpen(false);
 
+  /* ── Portal: render overlay + drawer directly into body ──
+     This bypasses the header's stacking context (z-index: 100)
+     so the drawer can truly sit on top of everything.         */
+  const mobilePortal = createPortal(
+    <>
+      {/* Backdrop */}
+      <div
+        className={`header-mobile-overlay${isMobileMenuOpen ? " open" : ""}`}
+        onClick={closeMobile}
+        aria-hidden="true"
+      />
+
+      {/* Slide-in drawer */}
+      <nav
+        className={`header-mobile-drawer${isMobileMenuOpen ? " open" : ""}`}
+        aria-hidden={!isMobileMenuOpen}
+        aria-label="Mobile navigation"
+      >
+        {/* Close button inside drawer */}
+        <button
+          className="header-drawer-close"
+          aria-label="Close menu"
+          onClick={closeMobile}
+        >
+          <X size={22} />
+        </button>
+
+        <ul className="header-mobile-nav-list">
+          {NAV_LINKS.map(({ to, label, end }) => (
+            <li key={to}>
+              <NavLink to={to} end={end || undefined} onClick={closeMobile}>
+                {label}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+
+        <div className="header-mobile-actions">
+          <button
+            className="header-btn header-btn-outline header-btn-full"
+            onClick={() => { setIsAuditModalOpen(true); closeMobile(); }}
+          >
+            <Target size={16} /> Free Audit
+          </button>
+          <button
+            className="header-btn header-btn-primary header-btn-full"
+            onClick={() => { onBookCall?.(); closeMobile(); }}
+          >
+            <Phone size={16} /> Book a Call
+          </button>
+          <Link
+            to="/contact"
+            className="header-btn header-btn-primary header-btn-full"
+            onClick={closeMobile}
+          >
+            Get Started <ArrowRight size={16} />
+          </Link>
+        </div>
+      </nav>
+    </>,
+    document.body
+  );
+
   return (
     <>
       <header className={`header${scrolled ? " scrolled" : ""}`}>
@@ -106,53 +170,10 @@ const Header = ({ onBookCall }) => {
             {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
-
-        {/* Mobile backdrop */}
-        <div
-          className={`header-mobile-overlay${isMobileMenuOpen ? " open" : ""}`}
-          onClick={closeMobile}
-          aria-hidden="true"
-        />
-
-        {/* Mobile slide-in drawer */}
-        <nav
-          className={`header-mobile-drawer${isMobileMenuOpen ? " open" : ""}`}
-          aria-hidden={!isMobileMenuOpen}
-          aria-label="Mobile navigation"
-        >
-          <ul className="header-mobile-nav-list">
-            {NAV_LINKS.map(({ to, label, end }) => (
-              <li key={to}>
-                <NavLink to={to} end={end || undefined} onClick={closeMobile}>
-                  {label}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-
-          <div className="header-mobile-actions">
-            <button
-              className="header-btn header-btn-outline header-btn-full"
-              onClick={() => { setIsAuditModalOpen(true); closeMobile(); }}
-            >
-              <Target size={16} /> Free Audit
-            </button>
-            <button
-              className="header-btn header-btn-primary header-btn-full"
-              onClick={() => { onBookCall?.(); closeMobile(); }}
-            >
-              <Phone size={16} /> Book a Call
-            </button>
-            <Link
-              to="/contact"
-              className="header-btn header-btn-primary header-btn-full"
-              onClick={closeMobile}
-            >
-              Get Started <ArrowRight size={16} />
-            </Link>
-          </div>
-        </nav>
       </header>
+
+      {/* Mobile drawer via portal — escapes header stacking context */}
+      {mobilePortal}
 
       <FreeAuditModal
         isOpen={isAuditModalOpen}

@@ -227,8 +227,8 @@
   background: rgba(15, 23, 42, 0.5);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
-  /* sits above header (100) so overlay covers the whole screen including header area */
-  z-index: 150;
+  /* Portal renders in body — needs very high z-index */
+  z-index: 9998;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -247,7 +247,7 @@
   bottom: 0;
   width: min(82vw, 320px);
   background: #ffffff;
-  z-index: 160;
+  z-index: 9999;
   transform: translateX(102%);
   transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 5rem 1.25rem 2rem;
@@ -261,6 +261,28 @@
 
 .header-mobile-drawer.open {
   transform: translateX(0);
+}
+
+/* ── Drawer close button (top-right inside drawer) ── */
+.header-drawer-close {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f5f9;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 10px;
+  color: #1e293b;
+  line-height: 0;
+  transition: background 0.2s ease;
+}
+
+.header-drawer-close:hover {
+  background: #e2e8f0;
 }
 
 /* ── Mobile nav list ── */

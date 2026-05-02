@@ -9,6 +9,10 @@ import {
   Target,
   Code,
   Video,
+  Sparkles,
+  ShieldCheck,
+  GraduationCap,
+  BookOpen,
 } from 'lucide-react';
 import Hero from '../components/Hero';
 import TrustedMarquee from '../components/TrustedMarquee';
@@ -189,6 +193,72 @@ const PortfolioPreview = () => {
           <button className="hp-cta-btn" onClick={() => navigate('/portfolio')}>
             View All Projects <ArrowRight size={16} />
           </button>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const CoursesTeaser = () => {
+  const navigate = useNavigate();
+  return (
+    <section className="hp-preview hp-courses-teaser">
+      <div className="container">
+        <div className="hp-ct-hero">
+          {/* Left Panel */}
+          <div className="hp-ct-panel hp-ct-left">
+            <div className="hp-ct-badge">
+              <Sparkles size={15} />
+              DigiQlik Courses
+            </div>
+            <h2 className="hp-ct-title">
+              Digital marketing courses with{' '}
+              <span className="hp-ct-highlight">two clear price tiers</span>
+            </h2>
+            <p className="hp-ct-subtitle">
+              Choose from ₹1,999 Essential courses or ₹4,999 Professional tracks. All
+              programs include live classes, free trial, study material, certificate, and
+              practical projects. Designed to help you pick the exact level you need.
+            </p>
+            <div className="hp-ct-actions">
+              <button
+                className="hp-ct-btn hp-ct-btn--primary"
+                onClick={() => navigate('/courses')}
+              >
+                Explore Courses <ArrowRight size={17} />
+              </button>
+              <button
+                className="hp-ct-btn hp-ct-btn--outline"
+                onClick={() => navigate('/courses')}
+              >
+                View Detailed Panel
+              </button>
+            </div>
+          </div>
+
+          {/* Right Panel – image + glassmorphism stat cards */}
+          <div className="hp-ct-panel hp-ct-right">
+            <div className="hp-ct-overlay">
+              <div className="hp-ct-stats">
+                <div className="hp-ct-stat">
+                  <strong>Free Trial</strong>
+                  <span>Start with a trial class before you join.</span>
+                </div>
+                <div className="hp-ct-stat">
+                  <strong>Live Learning</strong>
+                  <span>No recorded lectures, only live teaching.</span>
+                </div>
+                <div className="hp-ct-stat">
+                  <strong>Certificate</strong>
+                  <span>Study material and certificate included.</span>
+                </div>
+                <div className="hp-ct-stat">
+                  <strong>2 Price Points</strong>
+                  <span>₹1,999 &amp; ₹4,999 — clear &amp; affordable.</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -527,6 +597,173 @@ const Home = ({ onBookCall = () => {} }) => {
           text-align: center;
         }
 
+        /* ----- courses teaser ----- */
+        .hp-courses-teaser {
+          background: #f8fafc;
+        }
+
+        .hp-ct-hero {
+          display: grid;
+          grid-template-columns: 1.15fr 0.85fr;
+          gap: 22px;
+          align-items: stretch;
+        }
+
+        .hp-ct-panel {
+          background: rgba(255,255,255,0.88);
+          border: 1px solid rgba(148,163,184,0.22);
+          box-shadow: 0 18px 45px rgba(15,23,42,0.08);
+          border-radius: 28px;
+          overflow: hidden;
+        }
+
+        .hp-ct-left {
+          padding: 2.2rem 2.5rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 1.1rem;
+          min-height: 370px;
+        }
+
+        .hp-ct-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          width: fit-content;
+          padding: 9px 14px;
+          border-radius: 999px;
+          background: linear-gradient(135deg, rgba(37,99,235,0.10), rgba(16,185,129,0.10));
+          color: #1d4ed8;
+          font-weight: 800;
+          font-size: 0.88rem;
+        }
+
+        .hp-ct-title {
+          font-size: clamp(1.7rem, 3.5vw, 2.8rem);
+          font-weight: 800;
+          line-height: 1.12;
+          letter-spacing: -0.03em;
+          color: #0f172a;
+          margin: 0;
+        }
+
+        .hp-ct-highlight {
+          color: #2563eb;
+        }
+
+        .hp-ct-subtitle {
+          font-size: 1rem;
+          line-height: 1.75;
+          color: #475569;
+          margin: 0;
+        }
+
+        .hp-ct-actions {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+          margin-top: 4px;
+        }
+
+        .hp-ct-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          padding: 13px 22px;
+          border-radius: 14px;
+          font-weight: 800;
+          font-size: 1rem;
+          cursor: pointer;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+          border: none;
+        }
+
+        .hp-ct-btn--primary {
+          background: linear-gradient(135deg, #2563eb, #7c3aed);
+          color: #fff;
+          box-shadow: 0 12px 28px rgba(37,99,235,0.22);
+        }
+
+        .hp-ct-btn--outline {
+          background: #fff;
+          color: #0f172a;
+          border: 1.5px solid rgba(148,163,184,0.40);
+        }
+
+        .hp-ct-btn:hover {
+          transform: translateY(-2px);
+        }
+
+        .hp-ct-right {
+          position: relative;
+          min-height: 370px;
+          background:
+            linear-gradient(180deg, rgba(15,23,42,0.10), rgba(15,23,42,0.55)),
+            url('https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=80')
+            center/cover no-repeat;
+          display: flex;
+          align-items: flex-end;
+        }
+
+        .hp-ct-overlay {
+          width: 100%;
+          padding: 22px;
+          color: #fff;
+        }
+
+        .hp-ct-stats {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0,1fr));
+          gap: 12px;
+        }
+
+        .hp-ct-stat {
+          background: rgba(255,255,255,0.14);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border: 1px solid rgba(255,255,255,0.18);
+          border-radius: 18px;
+          padding: 15px;
+        }
+
+        .hp-ct-stat strong {
+          display: block;
+          font-size: 1.05rem;
+          font-weight: 800;
+          margin-bottom: 4px;
+        }
+
+        .hp-ct-stat span {
+          display: block;
+          font-size: 0.88rem;
+          line-height: 1.45;
+          color: rgba(255,255,255,0.88);
+        }
+
+        @media (max-width: 1024px) {
+          .hp-ct-hero {
+            grid-template-columns: 1fr;
+          }
+          .hp-ct-right {
+            min-height: 300px;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .hp-ct-left {
+            padding: 1.75rem;
+            min-height: auto;
+          }
+          .hp-ct-stats {
+            grid-template-columns: 1fr;
+          }
+          .hp-ct-btn {
+            width: 100%;
+          }
+        }
+
         /* ----- responsive adjustments ----- */
         @media (max-width: 1024px) {
           .hp-founder-card {
@@ -616,6 +853,7 @@ const Home = ({ onBookCall = () => {} }) => {
       <ProcessPreview />
       <FounderPreview />
       <PortfolioPreview />
+      <CoursesTeaser />
       <TrustedMarquee />
     </div>
   );

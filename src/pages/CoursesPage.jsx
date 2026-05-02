@@ -39,7 +39,7 @@ const COURSES = [
     price: '₹4,999',
     original: '₹9,999',
     badge: 'Bestseller',
-    g: ['#4f46e5', '#6d28d9'],
+    g: ['#E4403B', '#c0392b'],
     icon: Megaphone,
     outcomes: [
       'Plan and run multi-channel marketing campaigns',
@@ -77,7 +77,7 @@ const COURSES = [
     price: '₹2,999',
     original: '₹5,999',
     badge: null,
-    g: ['#059669', '#0d9488'],
+    g: ['#2D3E50', '#1e293b'],
     icon: Search,
     outcomes: [
       'Perform full SEO audits on any website',
@@ -112,7 +112,7 @@ const COURSES = [
     price: '₹2,499',
     original: '₹4,999',
     badge: null,
-    g: ['#db2777', '#be185d'],
+    g: ['#E4403B', '#2D3E50'],
     icon: Users,
     outcomes: [
       'Create content that consistently drives engagement',
@@ -147,7 +147,7 @@ const COURSES = [
     price: '₹3,999',
     original: '₹7,999',
     badge: 'Hot',
-    g: ['#d97706', '#ea580c'],
+    g: ['#c0392b', '#1a0a08'],
     icon: Target,
     outcomes: [
       'Launch profitable ad campaigns from day one',
@@ -182,7 +182,7 @@ const COURSES = [
     price: '₹3,499',
     original: '₹6,999',
     badge: null,
-    g: ['#1d4ed8', '#0369a1'],
+    g: ['#2D3E50', '#E4403B'],
     icon: TrendingUp,
     outcomes: [
       'Build and manage Google Ads campaigns end-to-end',
@@ -217,7 +217,7 @@ const COURSES = [
     price: '₹1,999',
     original: '₹3,999',
     badge: null,
-    g: ['#7c3aed', '#6d28d9'],
+    g: ['#E4403B', '#f87171'],
     icon: FileText,
     outcomes: [
       'Develop a content strategy that drives qualified leads',
@@ -252,7 +252,7 @@ const COURSES = [
     price: '₹2,499',
     original: '₹4,999',
     badge: null,
-    g: ['#9d174d', '#be185d'],
+    g: ['#1a0a08', '#2D3E50'],
     icon: Palette,
     outcomes: [
       'Build a distinct brand identity from scratch',
@@ -287,7 +287,7 @@ const COURSES = [
     price: '₹3,499',
     original: '₹6,999',
     badge: null,
-    g: ['#ea580c', '#b45309'],
+    g: ['#E4403B', '#1e293b'],
     icon: ShoppingCart,
     outcomes: [
       'Launch and grow products on Amazon, Flipkart, and D2C',
@@ -314,9 +314,9 @@ const COURSES = [
 ];
 
 const LEVEL_COLOR = {
-  Beginner: { bg: '#dcfce7', text: '#16a34a' },
-  Intermediate: { bg: '#fff7ed', text: '#c2410c' },
-  Advanced: { bg: '#ede9fe', text: '#7c3aed' },
+  Beginner: { bg: '#f1f5f9', text: '#475569' },
+  Intermediate: { bg: '#ffebeb', text: '#E4403B' },
+  Advanced: { bg: '#2D3E50', text: '#fff' },
 };
 
 const BENEFITS = [
@@ -372,7 +372,7 @@ export default function CoursesPage() {
           display: inline-block;
           font-size: 0.73rem; font-weight: 700;
           text-transform: uppercase; letter-spacing: 0.15em;
-          background: #fff1e6; color: #f97316;
+          background: #ffebeb; color: #E4403B;
           padding: 0.3rem 1rem; border-radius: 40px;
           margin-bottom: 0.75rem;
         }
@@ -382,20 +382,20 @@ export default function CoursesPage() {
           color: #0f172a; margin: 0 0 0.55rem; line-height: 1.12;
         }
         .cmp-h2 em { font-style: normal;
-          background: linear-gradient(135deg, #f97316, #fb923c);
+          background: linear-gradient(135deg, #E4403B, #c0392b);
           background-clip: text; -webkit-background-clip: text; color: transparent;
         }
         .cmp-sub { font-size: 1rem; color: #64748b; line-height: 1.65; margin: 0; }
         .cmp-btn-orange {
           display: inline-flex; align-items: center; gap: 8px;
           padding: 13px 26px; border-radius: 9999px;
-          background: linear-gradient(135deg, #f97316, #fb923c);
+          background: linear-gradient(135deg, #E4403B, #c0392b);
           color: #fff; font-weight: 700; font-size: 0.97rem;
           border: none; cursor: pointer; text-decoration: none;
-          box-shadow: 0 10px 28px rgba(249,115,22,0.28);
+          box-shadow: 0 10px 28px rgba(228,64,59,0.28);
           transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-        .cmp-btn-orange:hover { transform: translateY(-3px); box-shadow: 0 18px 38px rgba(249,115,22,0.38); }
+        .cmp-btn-orange:hover { transform: translateY(-3px); box-shadow: 0 18px 38px rgba(228,64,59,0.38); }
         .cmp-btn-ghost {
           display: inline-flex; align-items: center; gap: 8px;
           padding: 13px 26px; border-radius: 9999px;
@@ -411,9 +411,9 @@ export default function CoursesPage() {
         .cmp-hero {
           padding: clamp(80px, 11vw, 130px) 1.5rem clamp(70px, 9vw, 110px);
           background:
-            radial-gradient(ellipse at 15% 50%, rgba(79,70,229,0.2) 0%, transparent 50%),
-            radial-gradient(ellipse at 85% 20%, rgba(249,115,22,0.12) 0%, transparent 45%),
-            linear-gradient(170deg, #060c1a 0%, #0d1528 100%);
+            radial-gradient(ellipse at 15% 50%, rgba(228,64,59,0.22) 0%, transparent 50%),
+            radial-gradient(ellipse at 85% 20%, rgba(228,64,59,0.14) 0%, transparent 45%),
+            linear-gradient(170deg, #1a0a08 0%, #2d1510 100%);
           position: relative; overflow: hidden; text-align: center;
         }
         .cmp-hero::before {
@@ -429,8 +429,8 @@ export default function CoursesPage() {
         .cmp-hero-badge {
           display: inline-flex; align-items: center; gap: 8px;
           padding: 7px 20px; border-radius: 999px;
-          background: rgba(249,115,22,0.12); border: 1px solid rgba(249,115,22,0.26);
-          color: #fdba74; font-size: 0.75rem; font-weight: 700;
+          background: rgba(228,64,59,0.14); border: 1px solid rgba(228,64,59,0.32);
+          color: #f8a09d; font-size: 0.75rem; font-weight: 700;
           letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.8rem;
         }
         .cmp-hero-h1 {
@@ -439,7 +439,7 @@ export default function CoursesPage() {
           color: #f8fafc; margin: 0 0 1.2rem;
         }
         .cmp-hero-h1 em { font-style: normal;
-          background: linear-gradient(135deg, #f97316, #fbbf24);
+          background: linear-gradient(135deg, #E4403B, #f87171);
           background-clip: text; -webkit-background-clip: text; color: transparent;
         }
         .cmp-hero-p {
@@ -454,8 +454,8 @@ export default function CoursesPage() {
           display: flex; align-items: center; gap: 6px;
           color: #94a3b8; font-size: 0.88rem; font-weight: 600;
         }
-        .cmp-trust-pill svg { color: #f97316; }
-        .cmp-trust-dot { width: 4px; height: 4px; border-radius: 50%; background: #334155; }
+        .cmp-trust-pill svg { color: #E4403B; }
+        .cmp-trust-dot { width: 4px; height: 4px; border-radius: 50%; background: #E4403B; }
         .cmp-hero-actions { display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; }
 
         /* ── 2. BENEFITS ─────────────────────────────────── */
@@ -478,8 +478,8 @@ export default function CoursesPage() {
         .cmp-benefit:hover { background: #fafafa; }
         .cmp-benefit-icon {
           width: 46px; height: 46px; border-radius: 13px; flex-shrink: 0;
-          background: linear-gradient(135deg, #fff7ed, #ffedd5);
-          display: flex; align-items: center; justify-content: center; color: #f97316;
+          background: linear-gradient(135deg, #ffebeb, #ffdada);
+          display: flex; align-items: center; justify-content: center; color: #E4403B;
         }
         .cmp-benefit h4 { font-size: 0.95rem; font-weight: 700; color: #0f172a; margin: 0 0 4px; }
         .cmp-benefit p { font-size: 0.82rem; color: #64748b; margin: 0; line-height: 1.5; }
@@ -501,8 +501,8 @@ export default function CoursesPage() {
         .cmp-filter:hover:not(.active) { border-color: #cbd5e1; }
         .cmp-filter.active { background: #0f172a; color: #fff; border-color: #0f172a; }
         .cmp-filter.beginner.active { background: #16a34a; border-color: #16a34a; }
-        .cmp-filter.intermediate.active { background: #f97316; border-color: #f97316; }
-        .cmp-filter.advanced.active { background: #7c3aed; border-color: #7c3aed; }
+        .cmp-filter.intermediate.active { background: #E4403B; border-color: #E4403B; }
+        .cmp-filter.advanced.active { background: #2D3E50; border-color: #2D3E50; }
 
         .cmp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(268px,1fr)); gap: 1.25rem; }
 
@@ -526,12 +526,12 @@ export default function CoursesPage() {
         }
         .cmp-card-badge {
           position: absolute; top: 10px; right: 10px;
-          background: #fbbf24; color: #0f172a;
+          background: #E4403B; color: #fff;
           font-size: 0.65rem; font-weight: 800; text-transform: uppercase;
           letter-spacing: 0.08em; padding: 3px 10px; border-radius: 20px; z-index: 2;
           box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
-        .cmp-card-badge.hot { background: #f97316; color: #fff; }
+        .cmp-card-badge.hot { background: #2D3E50; color: #fff; }
 
         .cmp-card-body { padding: 1.3rem; flex: 1; display: flex; flex-direction: column; gap: 0.7rem; }
         .cmp-card-title { font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0; line-height: 1.3; }
@@ -557,14 +557,14 @@ export default function CoursesPage() {
         .cmp-card-ctas { display: flex; gap: 0.6rem; }
         .cmp-buy-btn {
           flex: 1; padding: 10px 0; border-radius: 10px;
-          background: linear-gradient(135deg, #f97316, #fb923c);
+          background: linear-gradient(135deg, #E4403B, #c0392b);
           color: #fff; font-weight: 700; font-size: 0.88rem;
           border: none; cursor: pointer; text-decoration: none;
           display: flex; align-items: center; justify-content: center; gap: 6px;
-          box-shadow: 0 6px 18px rgba(249,115,22,0.25);
+          box-shadow: 0 6px 18px rgba(228,64,59,0.25);
           transition: transform 0.18s ease, box-shadow 0.18s ease;
         }
-        .cmp-buy-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(249,115,22,0.35); }
+        .cmp-buy-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(228,64,59,0.35); }
         .cmp-details-btn {
           padding: 10px 14px; border-radius: 10px;
           background: #f8fafc; color: #475569; font-weight: 600;
@@ -602,7 +602,7 @@ export default function CoursesPage() {
           font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 800;
           color: #f8fafc; margin: 0 0 0.75rem; letter-spacing: -0.03em; line-height: 1.15;
         }
-        .cmp-bundle-h3 em { font-style: normal; color: #fb923c; }
+        .cmp-bundle-h3 em { font-style: normal; color: #E4403B; }
         .cmp-bundle-desc { font-size: 0.97rem; color: #94a3b8; line-height: 1.65; margin: 0 0 1.5rem; }
         .cmp-bundle-courses {
           display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; margin-bottom: 1.75rem;
@@ -624,13 +624,13 @@ export default function CoursesPage() {
         .cmp-bundle-buy {
           display: flex; align-items: center; justify-content: center; gap: 8px;
           width: 100%; padding: 15px 0; border-radius: 14px;
-          background: linear-gradient(135deg, #f97316, #fb923c);
+          background: linear-gradient(135deg, #E4403B, #c0392b);
           color: #fff; font-weight: 700; font-size: 1rem;
           border: none; cursor: pointer; text-decoration: none;
-          box-shadow: 0 12px 32px rgba(249,115,22,0.35);
+          box-shadow: 0 12px 32px rgba(228,64,59,0.35);
           transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-        .cmp-bundle-buy:hover { transform: translateY(-3px); box-shadow: 0 20px 42px rgba(249,115,22,0.45); }
+        .cmp-bundle-buy:hover { transform: translateY(-3px); box-shadow: 0 20px 42px rgba(228,64,59,0.45); }
         .cmp-bundle-note { font-size: 0.75rem; color: #475569; margin-top: 0.75rem; }
 
         /* ── 5. HOW IT WORKS ─────────────────────────────── */
@@ -647,10 +647,10 @@ export default function CoursesPage() {
         }
         .cmp-step-num {
           width: 64px; height: 64px; border-radius: 20px; margin: 0 auto 1.25rem;
-          background: linear-gradient(135deg, #f97316, #fb923c);
+          background: linear-gradient(135deg, #E4403B, #c0392b);
           display: flex; align-items: center; justify-content: center;
           font-size: 1.1rem; font-weight: 900; color: #fff;
-          box-shadow: 0 12px 28px rgba(249,115,22,0.28);
+          box-shadow: 0 12px 28px rgba(228,64,59,0.28);
         }
         .cmp-step h4 { font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 0.5rem; }
         .cmp-step p { font-size: 0.87rem; color: #64748b; line-height: 1.6; margin: 0; }
@@ -681,13 +681,13 @@ export default function CoursesPage() {
         .cmp-review-text { font-size: 0.9rem; color: #334155; line-height: 1.68; margin: 0; font-style: italic; flex: 1; }
         .cmp-review-course {
           font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
-          letter-spacing: 0.1em; color: #f97316; background: #fff7ed;
+          letter-spacing: 0.1em; color: #E4403B; background: #ffebeb;
           padding: 3px 10px; border-radius: 6px; width: fit-content;
         }
         .cmp-reviewer { display: flex; align-items: center; gap: 10px; }
         .cmp-reviewer-avatar {
           width: 38px; height: 38px; border-radius: 50%;
-          background: linear-gradient(135deg, #4f46e5, #7c3aed);
+          background: linear-gradient(135deg, #E4403B, #c0392b);
           display: flex; align-items: center; justify-content: center;
           font-size: 0.9rem; font-weight: 700; color: #fff; flex-shrink: 0;
         }
@@ -698,9 +698,9 @@ export default function CoursesPage() {
         .cmp-cta {
           padding: clamp(4.5rem, 8vw, 8rem) 1.5rem; text-align: center;
           background:
-            radial-gradient(ellipse at 25% 60%, rgba(79,70,229,0.22), transparent 50%),
-            radial-gradient(ellipse at 78% 25%, rgba(249,115,22,0.16), transparent 48%),
-            linear-gradient(170deg, #060c1a 0%, #0d1528 100%);
+            radial-gradient(ellipse at 25% 60%, rgba(228,64,59,0.24), transparent 50%),
+            radial-gradient(ellipse at 78% 25%, rgba(228,64,59,0.16), transparent 48%),
+            linear-gradient(170deg, #1a0a08 0%, #2d1510 100%);
           position: relative; overflow: hidden;
         }
         .cmp-cta::before {
@@ -717,7 +717,7 @@ export default function CoursesPage() {
           letter-spacing: -0.038em; line-height: 1.08; color: #f8fafc; margin: 0 0 1rem;
         }
         .cmp-cta-h2 em { font-style: normal;
-          background: linear-gradient(135deg, #f97316, #fbbf24);
+          background: linear-gradient(135deg, #E4403B, #f87171);
           background-clip: text; -webkit-background-clip: text; color: transparent;
         }
         .cmp-cta-p { font-size: 1.05rem; color: #94a3b8; line-height: 1.7; margin: 0 auto 2.4rem; max-width: 480px; }
@@ -783,14 +783,14 @@ export default function CoursesPage() {
         .cmp-modal-buy {
           display: flex; align-items: center; gap: 8px;
           padding: 12px 28px; border-radius: 12px;
-          background: linear-gradient(135deg, #f97316, #fb923c);
+          background: linear-gradient(135deg, #E4403B, #c0392b);
           color: #fff; font-weight: 700; font-size: 1rem;
           border: none; cursor: pointer; text-decoration: none;
-          box-shadow: 0 8px 24px rgba(249,115,22,0.28);
+          box-shadow: 0 8px 24px rgba(228,64,59,0.28);
           transition: transform 0.18s ease, box-shadow 0.18s ease;
           white-space: nowrap;
         }
-        .cmp-modal-buy:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(249,115,22,0.38); }
+        .cmp-modal-buy:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(228,64,59,0.38); }
 
         /* ── RESPONSIVE ──────────────────────────────────── */
         @media (max-width: 1024px) {
@@ -1218,7 +1218,7 @@ export default function CoursesPage() {
                 <ul className="cmp-modal-list">
                   {selected.curriculum.map((c, i) => (
                     <li key={i}>
-                      <BadgeCheck size={14} color="#6366f1" />
+                      <BadgeCheck size={14} color="#E4403B" />
                       {c}
                     </li>
                   ))}
@@ -1229,7 +1229,7 @@ export default function CoursesPage() {
                 <ul className="cmp-modal-list">
                   {selected.includes.map((inc, i) => (
                     <li key={i}>
-                      <BadgeCheck size={14} color="#f97316" />
+                      <BadgeCheck size={14} color="#E4403B" />
                       {inc}
                     </li>
                   ))}
