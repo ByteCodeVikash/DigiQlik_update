@@ -53,10 +53,10 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #2563eb, #6366f1);
+  background: var(--gradient-primary);
   color: white;
   border: none;
-  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.45);
+  box-shadow: 0 4px 20px rgba(228, 64, 59, 0.45);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -72,13 +72,13 @@
 }
 
 .chatbot-toggle.open {
-  background: #334155;
-  box-shadow: 0 4px 12px rgba(51, 65, 85, 0.4);
+  background: #1a1a1a;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .chatbot-toggle:hover {
   transform: scale(1.08);
-  box-shadow: 0 8px 28px rgba(37, 99, 235, 0.55);
+  box-shadow: 0 8px 28px rgba(228, 64, 59, 0.55);
 }
 
 /* Notification dot */
@@ -88,9 +88,9 @@
   right: 13px;
   width: 10px;
   height: 10px;
-  background-color: #ef4444;
+  background-color: var(--color-accent);
   border-radius: 50%;
-  border: 2px solid #2563eb;
+  border: 2px solid var(--color-primary);
   pointer-events: none;
 }
 
@@ -100,7 +100,7 @@
   width: calc(100% + 4px);
   height: calc(100% + 4px);
   border-radius: 50%;
-  border: 2px solid #6366f1;
+  border: 2px solid var(--color-primary);
   top: -2px;
   left: -2px;
   animation: chatbotPulse 2s infinite cubic-bezier(0.66, 0, 0, 1);
@@ -155,7 +155,7 @@
    CHAT HEADER
    ========================================= */
 .chatbot-header {
-  background: linear-gradient(135deg, #4f46e5, #6d28d9);
+  background: var(--gradient-primary);
   padding: 14px 16px;
   color: white;
   flex-shrink: 0;
@@ -283,7 +283,7 @@
 }
 
 .user .message-bubble {
-  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  background: var(--gradient-primary);
   color: #ffffff;
   border-bottom-right-radius: 4px;
 }
@@ -317,11 +317,11 @@
 .action-btn.call  { background: rgba(16, 185, 129, 0.12); color: #059669; }
 .action-btn.call:hover  { background: rgba(16, 185, 129, 0.22); }
 
-.action-btn.email { background: rgba(59, 130, 246, 0.12); color: #2563eb; }
-.action-btn.email:hover { background: rgba(59, 130, 246, 0.22); }
+.action-btn.email { background: rgba(45, 62, 80, 0.12); color: #2D3E50; }
+.action-btn.email:hover { background: rgba(45, 62, 80, 0.22); }
 
-.action-btn.form  { background: rgba(139, 92, 246, 0.12); color: #7c3aed; }
-.action-btn.form:hover  { background: rgba(139, 92, 246, 0.22); }
+.action-btn.form  { background: rgba(228, 64, 59, 0.12); color: var(--color-primary); }
+.action-btn.form:hover  { background: rgba(228, 64, 59, 0.22); }
 
 /* =========================================
    CHATBOT FORM (inside window)
@@ -372,14 +372,14 @@
 .chatbot-form .form-group input:focus,
 .chatbot-form .form-group textarea:focus {
   outline: none;
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(228, 64, 59, 0.15);
   background: #fff;
 }
 
 .submit-btn {
   width: 100%;
-  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  background: var(--gradient-primary);
   color: white;
   border: none;
   padding: 11px;
@@ -459,13 +459,13 @@
 }
 
 .chatbot-send-btn.active {
-  background: #4f46e5;
+  background: var(--color-primary);
   color: white;
   cursor: pointer;
 }
 
 .chatbot-send-btn.active:hover {
-  background: #4338ca;
+  background: var(--color-primary-hover);
 }
 
 /* =========================================

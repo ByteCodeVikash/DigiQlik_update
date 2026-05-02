@@ -12,29 +12,29 @@ const stats = [
 const values = [
   {
     icon: <Target size={28} />,
-    color: '#f97316',
-    bg: 'rgba(249,115,22,0.1)',
+    color: '#E4403B',
+    bg: 'rgba(228,64,59,0.1)',
     title: 'Results-First',
     desc: 'Every strategy, campaign, and line of code we write is engineered to deliver measurable outcomes — not just deliverables.',
   },
   {
     icon: <Eye size={28} />,
-    color: '#6366f1',
-    bg: 'rgba(99,102,241,0.1)',
+    color: '#2D3E50',
+    bg: 'rgba(45,62,80,0.1)',
     title: 'Transparent Partnership',
     desc: 'No jargon, no hidden costs. We believe in honest communication and clear timelines that keep you in control at every stage.',
   },
   {
     icon: <Zap size={28} />,
-    color: '#10b981',
-    bg: 'rgba(16,185,129,0.1)',
+    color: '#E4403B',
+    bg: 'rgba(228,64,59,0.1)',
     title: 'Speed & Quality',
     desc: 'We move fast without breaking things. Agile sprints, rapid prototyping, and quality checks baked into every workflow.',
   },
   {
     icon: <Heart size={28} />,
-    color: '#ec4899',
-    bg: 'rgba(236,72,153,0.1)',
+    color: '#2D3E50',
+    bg: 'rgba(45,62,80,0.1)',
     title: 'Passion-Driven',
     desc: 'We treat every client\'s brand as if it were our own — bringing genuine excitement and deep care to every project we touch.',
   },
@@ -161,7 +161,7 @@ const AboutCompany = () => {
       <style>{`
         .about-company-section {
           padding: 4rem 0;
-          background: linear-gradient(180deg, #fffaf5 0%, #ffffff 60%, #fffaf5 100%);
+          background: linear-gradient(180deg, #F8FAFC 0%, #ffffff 60%, #F8FAFC 100%);
         }
 
         /* Hero */
@@ -214,9 +214,9 @@ const AboutCompany = () => {
           display: inline-flex;
           align-items: center;
           gap: 0.35rem;
-          background: #fff7ed;
-          border: 1px solid #fed7aa;
-          color: #c2410c;
+          background: var(--color-primary-light);
+          border: 1px solid rgba(228, 64, 59, 0.2);
+          color: var(--color-primary-hover);
           font-size: 0.85rem;
           font-weight: 600;
           padding: 0.45rem 1rem;
@@ -231,8 +231,8 @@ const AboutCompany = () => {
           margin-top: 1.75rem;
           padding: 0.65rem 1.5rem;
           background: transparent;
-          border: 2px solid #f97316;
-          color: #f97316;
+          border: 2px solid var(--color-primary);
+          color: var(--color-primary);
           font-size: 0.95rem;
           font-weight: 700;
           border-radius: 9999px;
@@ -241,9 +241,9 @@ const AboutCompany = () => {
           letter-spacing: 0.01em;
         }
         .ac-know-more-btn:hover {
-          background: #f97316;
+          background: var(--color-primary);
           color: #ffffff;
-          box-shadow: 0 6px 20px rgba(249, 115, 22, 0.35);
+          box-shadow: 0 6px 20px rgba(228, 64, 59, 0.35);
           transform: translateY(-2px);
         }
         .ac-know-more-btn:active {
@@ -268,10 +268,10 @@ const AboutCompany = () => {
         }
         .ac-stat-card:hover {
           transform: translateY(-5px);
-          box-shadow: 0 12px 28px rgba(249,115,22,0.1);
+          box-shadow: 0 12px 28px rgba(228, 64, 59, 0.1);
         }
         .ac-stat-icon {
-          color: #f97316;
+          color: var(--color-primary);
           margin-bottom: 0.75rem;
           display: flex;
           justify-content: center;
@@ -279,7 +279,7 @@ const AboutCompany = () => {
         .ac-stat-value {
           font-size: 2.25rem;
           font-weight: 800;
-          color: #f97316;
+          color: var(--color-primary);
           line-height: 1;
           margin-bottom: 0.4rem;
         }
@@ -303,12 +303,12 @@ const AboutCompany = () => {
           overflow: hidden;
         }
         .ac-mission {
-          background: linear-gradient(135deg, #fff7ed, #ffedd5);
-          border: 1px solid #fed7aa;
+          background: linear-gradient(135deg, #FCECEB, #F8D7D5);
+          border: 1px solid rgba(228, 64, 59, 0.2);
         }
         .ac-vision {
-          background: linear-gradient(135deg, #eff6ff, #dbeafe);
-          border: 1px solid #bfdbfe;
+          background: linear-gradient(135deg, #E2E8F0, #CBD5E1);
+          border: 1px solid rgba(45, 62, 80, 0.2);
         }
         .ac-mv-icon {
           font-size: 2.5rem;
@@ -348,7 +348,7 @@ const AboutCompany = () => {
         .ac-value-card:hover {
           transform: translateY(-6px);
           box-shadow: 0 16px 32px rgba(0,0,0,0.08);
-          border-color: #fed7aa;
+          border-color: var(--color-primary);
         }
         .ac-value-icon {
           width: 56px;

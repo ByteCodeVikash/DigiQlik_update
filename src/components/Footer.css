@@ -4,7 +4,7 @@
   color: #E2E8F0;
   padding: 4rem 0 1.5rem;
   margin-top: 4rem;
-  border-top: 1px solid rgba(59, 130, 246, 0.2);
+  border-top: 1px solid rgba(228, 64, 59, 0.2);
   /* Prevent footer from causing horizontal scroll */
   overflow-x: hidden;
   width: 100%;
@@ -36,20 +36,20 @@
 
 /* Responsive container for video - fits the width */
 .logo-video-container {
-  background: rgba(59, 130, 246, 0.1);
+  background: rgba(228, 64, 59, 0.05);
   border-radius: 12px;
   padding: 4px;
   display: block;
   width: 100%;
   max-width: 280px;
-  border: 1px solid rgba(59, 130, 246, 0.3);
+  border: 1px solid rgba(228, 64, 59, 0.2);
   transition: all 0.3s ease;
   box-sizing: border-box;
 }
 
 .logo-video-container:hover {
-  border-color: #3B82F6;
-  background: rgba(59, 130, 246, 0.15);
+  border-color: var(--color-primary);
+  background: rgba(228, 64, 59, 0.1);
 }
 
 /* Video fills container width, maintains aspect ratio */
@@ -85,7 +85,7 @@
 }
 
 .contact-item svg {
-  color: #3B82F6;
+  color: var(--color-primary);
   flex-shrink: 0;
   margin-top: 2px;
 }
@@ -98,7 +98,7 @@
 }
 
 .contact-item a:hover {
-  color: #60A5FA;
+  color: var(--color-primary);
 }
 
 /* Social Links */
@@ -147,7 +147,7 @@
   left: 0;
   width: 35px;
   height: 2px;
-  background: #3B82F6;
+  background: var(--color-primary);
   border-radius: 2px;
 }
 
@@ -169,7 +169,7 @@
 }
 
 .footer-links li a:hover {
-  color: #60A5FA;
+  color: var(--color-primary);
   transform: translateX(4px);
 }
 
@@ -193,7 +193,7 @@
 }
 
 .developer-link {
-  color: #60A5FA;
+  color: var(--color-primary);
   text-decoration: none;
   font-weight: 500;
   display: inline-flex;
@@ -203,7 +203,7 @@
 }
 
 .developer-link:hover {
-  color: #93C5FD;
+  color: #FF6B66;
   text-decoration: underline;
 }
 

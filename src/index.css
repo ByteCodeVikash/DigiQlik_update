@@ -2,30 +2,36 @@
   /* Typography */
   --font-family: "Inter", system-ui, -apple-system, sans-serif;
 
-  /* Primary Colors - Peach / Orange theme from screenshot */
-  --color-primary: #f97316;
-  --color-primary-hover: #ea580c;
-  --color-primary-light: #fff7ed;
-  --color-secondary: #fed7aa;
-
+  /* Brand Colors - Red and Navy theme from Logo */
+  --color-primary: #E4403B;       /* Logo Red */
+  --color-primary-hover: #C5302B; /* Darker Red */
+  --color-primary-light: #FCECEB; /* Soft Red Tint */
+  --color-secondary: #2D3E50;     /* Logo Navy */
+  --color-secondary-hover: #1E2B38;
+  --color-accent: #EF4444;        /* Vibrant Red Accent */
+  
   /* Neutral Colors */
-  --color-text-main: #1e293b;
-  --color-text-muted: #64748b;
-  --color-bg-base: #fffaf5;
-  --color-surface: #ffffff;
-  --color-border: #e2e8f0;
+  --color-text-main: #1E293B;
+  --color-text-muted: #64748B;
+  --color-bg-base: #F8FAFC;      /* Clean Slate White */
+  --color-surface: #FFFFFF;
+  --color-border: #E2E8F0;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #E4403B 0%, #B91C1C 100%);
+  --gradient-secondary: linear-gradient(135deg, #2D3E50 0%, #1E293B 100%);
+  --gradient-glow: radial-gradient(circle at center, rgba(228, 64, 59, 0.15) 0%, transparent 70%);
 
   /* Layout */
   --container-max-width: 1200px;
-  --section-padding: 4rem 1rem;
+  --section-padding: 5rem 1.5rem;
 
   /* Shadows & Effects */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
-  --shadow-md:
-    0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  --shadow-lg:
-    0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
-  --shadow-glow: 0 0 20px rgba(249, 115, 22, 0.15);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-glow: 0 0 25px rgba(228, 64, 59, 0.2);
 
   /* Border Radius */
   --radius-md: 0.5rem;
@@ -33,9 +39,28 @@
   --radius-xl: 1.5rem;
   --radius-full: 9999px;
 
+  /* Master Premium Dark Theme Tokens */
+  --bg-dark-master: #111111;
+  --bg-deep-master: #080808;
+  --bg-card-master: rgba(28, 18, 18, 0.72);
+  --bg-glass-master: rgba(26, 14, 14, 0.88);
+
+  --gradient-dark-master: linear-gradient(160deg, #111111 0%, #080808 55%, #111111 100%);
+  --gradient-glow-master: radial-gradient(circle at top, rgba(228, 64, 59, 0.18), transparent 45%);
+
+  --text-main-dark: #f8fafc;
+  --text-muted-dark: #a09898;
+  --text-dim-dark: #706868;
+  
+  --border-master: 1px solid rgba(255, 255, 255, 0.08);
+  --border-red-master: 1px solid rgba(228, 64, 59, 0.2);
+  
+  --shadow-premium: 0 20px 40px -12px rgba(0, 0, 0, 0.5);
+  --shadow-glow-red: 0 0 30px rgba(228, 64, 59, 0.15);
+
   /* Transitions */
   --transition-fast: 150ms ease-in-out;
-  --transition-normal: 300ms ease-in-out;
+  --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -134,33 +159,34 @@ ul {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #f97316 0%, #ef4444 100%);
+  background: var(--gradient-primary);
   color: white;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 15px rgba(228, 64, 59, 0.25);
   border: none;
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #ea580c 0%, #dc2626 100%);
+  background: linear-gradient(135deg, #C5302B 0%, #A51D1D 100%);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md), var(--shadow-glow);
+  box-shadow: 0 8px 25px rgba(228, 64, 59, 0.35), var(--shadow-glow);
 }
 
 .btn-outline {
-  border: 1px solid #fed7aa;
-  color: #ea580c;
-  background: #fff7ed;
+  border: 1px solid rgba(228, 64, 59, 0.3);
+  color: var(--color-primary);
+  background: var(--color-primary-light);
   box-shadow: var(--shadow-sm);
 }
 
 .btn-outline:hover {
-  background: #ffedd5;
-  border-color: #fbd38d;
+  background: #FCE0DE;
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
 }
 
 /* Gradient text */
 .text-gradient {
-  background: linear-gradient(135deg, var(--color-primary), #f43f5e);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -170,22 +196,28 @@ ul {
 .section-tag {
   display: inline-block;
   color: var(--color-primary);
-  font-size: 0.875rem;
-  font-weight: 600;
+  background: var(--color-primary-light);
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.75rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(228, 64, 59, 0.1);
 }
 
 /* Section title */
 .section-title {
-  font-size: 2.5rem;
-  margin-bottom: 1.25rem;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+  color: var(--color-secondary);
 }
 
 /* Blog Page */
 .blog-page {
-  background: linear-gradient(180deg, #fffaf5 0%, #fff5f0 100%);
+  background: linear-gradient(180deg, var(--color-primary-light) 0%, var(--color-bg-base) 100%);
   padding-bottom: 3rem;
 }
 
@@ -221,7 +253,7 @@ ul {
 
 .blog-search input:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
+  box-shadow: 0 0 0 3px rgba(228, 64, 59, 0.2);
 }
 
 .category-tabs {
@@ -916,10 +948,10 @@ ul {
   height: 800px;
   background: radial-gradient(
     circle,
-    var(--color-secondary) 0%,
+    rgba(228, 64, 59, 0.07) 0%,
     rgba(255, 255, 255, 0) 70%
   );
-  opacity: 0.3;
+  opacity: 0.8;
   z-index: 0;
   pointer-events: none;
 }
@@ -1134,7 +1166,7 @@ ul {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+  box-shadow: 0 0 0 3px rgba(228, 64, 59, 0.1);
 }
 
 .btn-submit {
@@ -1279,7 +1311,7 @@ ul {
 }
 
 .testimonial-card-new {
-  background-color: #ffedd5; /* soft peach background matching screenshot */
+  background-color: var(--color-primary-light); /* soft red background */
   padding: 4rem 5rem;
   border-radius: 2rem;
   position: relative;
@@ -1339,7 +1371,7 @@ ul {
 
 .client-role-new {
   font-size: 0.95rem;
-  color: #ea580c;
+  color: var(--color-primary);
   font-weight: 500;
 }
 
@@ -1363,12 +1395,12 @@ ul {
 }
 
 .prev-btn {
-  background-color: #ffedd5;
+  background-color: var(--color-primary-light);
   border: none;
 }
 
 .prev-btn:hover {
-  background-color: #fed7aa;
+  background-color: #f8d7d5;
 }
 
 .next-btn {
@@ -1390,7 +1422,7 @@ ul {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: #fed7aa;
+  background-color: #f8d7d5;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1400,7 +1432,7 @@ ul {
 .dot-new.active {
   width: 28px;
   border-radius: 20px;
-  background-color: #ea580c;
+  background-color: var(--color-primary);
 }
 
 @media (max-width: 768px) {
@@ -1555,7 +1587,7 @@ ul {
 .form-group input:focus {
   outline: none;
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px var(--color-primary-light);
+  box-shadow: 0 0 0 3px rgba(228, 64, 59, 0.2);
 }
 
 .submit-btn {
@@ -1592,14 +1624,14 @@ ul {
 
 /* Base orange gradient (#ff6a00 -> #ff3c3c theme) */
 .blob-0 {
-  background: radial-gradient(circle at center, #ff6a00 0%, transparent 70%);
+  background: radial-gradient(circle at center, var(--color-primary) 0%, transparent 70%);
   width: 250px;
   height: 250px;
 }
 
 /* Trailing red/orange gradient */
 .blob-1 {
-  background: radial-gradient(circle at center, #ff3c3c 0%, transparent 70%);
+  background: radial-gradient(circle at center, #E4403B 0%, transparent 70%);
   width: 350px;
   height: 350px;
   opacity: 0.3;
@@ -1610,7 +1642,7 @@ ul {
   background: radial-gradient(
     circle at center,
     rgba(255, 255, 255, 0.6) 0%,
-    rgba(249, 115, 22, 0.2) 40%,
+    rgba(228, 64, 59, 0.2) 40%,
     transparent 70%
   );
   width: 500px;
@@ -1743,7 +1775,7 @@ ul {
   display: inline-block;
   padding: 0.75rem 1.5rem;
   border-radius: 9999px;
-  background: linear-gradient(135deg, #ff6a00 0%, #ff3c3c 100%);
+  background: var(--gradient-primary);
   color: white;
   font-weight: 600;
   text-align: center;
@@ -1756,7 +1788,7 @@ ul {
 @media (hover: hover) {
   .custom-card-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(255, 106, 0, 0.3);
+    box-shadow: 0 10px 20px rgba(228, 64, 59, 0.3);
   }
 }
 
@@ -1898,7 +1930,7 @@ ul {
   background: var(--color-primary);
   color: white;
   border-color: var(--color-primary);
-  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+  box-shadow: 0 4px 15px rgba(228, 64, 59, 0.3);
 }
 
 .blog-layout-grid {
@@ -1959,7 +1991,7 @@ ul {
 .featured-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.3) 60%, transparent 100%);
+  background: linear-gradient(to top, rgba(8, 4, 4, 0.92) 0%, rgba(8, 4, 4, 0.35) 60%, transparent 100%);
   z-index: 1;
 }
 
@@ -2015,7 +2047,7 @@ ul {
   padding: 0.8rem 1.8rem;
   font-weight: 600;
   font-size: 0.9rem;
-  background: linear-gradient(135deg, #ff6a00 0%, #ff3c3c 100%);
+  background: var(--gradient-primary);
   color: white;
   border: none;
   cursor: pointer;
@@ -2023,7 +2055,7 @@ ul {
 }
 
 .blog-featured-card:hover .featured-btn {
-  box-shadow: 0 8px 15px rgba(255, 106, 0, 0.4);
+  box-shadow: 0 8px 15px rgba(228, 64, 59, 0.4);
 }
 
 /* Small Card */

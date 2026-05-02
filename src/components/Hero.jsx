@@ -228,9 +228,9 @@ const Hero = ({ onBookCall }) => {
             className="hero-badge float-animation"
             onClick={() => setIsConnectModalOpen(true)}
           >
-            <Sparkles size={16} strokeWidth={2.5} />
+            <Sparkles size={18} strokeWidth={2.5} />
             <span className="badge-text">Click. Connect. Grow.</span>
-            <Sparkles size={16} strokeWidth={2.5} />
+            <Sparkles size={18} strokeWidth={2.5} />
           </button>
 
           <h1 className="hero-title">

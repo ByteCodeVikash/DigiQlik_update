@@ -82,19 +82,19 @@ const Contact = () => {
               <h3>Why Choose Us?</h3>
               <ul className="benefits-list">
                 <li>
-                  <CheckCircle size={20} color="#f97316" /> Expert team with 15+
+                  <CheckCircle size={20} color="#E4403B" /> Expert team with 15+
                   years experience
                 </li>
                 <li>
-                  <CheckCircle size={20} color="#f97316" /> Proven track record
+                  <CheckCircle size={20} color="#E4403B" /> Proven track record
                   of success
                 </li>
                 <li>
-                  <CheckCircle size={20} color="#f97316" /> Personalized
+                  <CheckCircle size={20} color="#E4403B" /> Personalized
                   approach to every project
                 </li>
                 <li>
-                  <CheckCircle size={20} color="#f97316" /> 24/7 dedicated
+                  <CheckCircle size={20} color="#E4403B" /> 24/7 dedicated
                   support
                 </li>
               </ul>

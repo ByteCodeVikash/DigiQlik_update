@@ -27,12 +27,12 @@ const founderImg = '/shekharkatiyar.jpeg';
    Services data
 ─────────────────────────────────────────── */
 const serviceHighlights = [
-  { icon: <Search size={22} />, label: 'SEO & Performance Marketing', color: '#3b82f6' },
-  { icon: <Code size={22} />, label: 'Web Development', color: '#6366f1' },
-  { icon: <Palette size={22} />, label: 'Graphic & Branding Design', color: '#8b5cf6' },
-  { icon: <Video size={22} />, label: 'Video Production', color: '#ec4899' },
-  { icon: <Share2 size={22} />, label: 'Social Media Marketing', color: '#10b981' },
-  { icon: <Target size={22} />, label: 'Paid Advertising (PPC)', color: '#f97316' },
+  { icon: <Search size={22} />, label: 'SEO & Performance Marketing', color: '#E4403B' },
+  { icon: <Code size={22} />, label: 'Web Development', color: '#2D3E50' },
+  { icon: <Palette size={22} />, label: 'Graphic & Branding Design', color: '#E4403B' },
+  { icon: <Video size={22} />, label: 'Video Production', color: '#2D3E50' },
+  { icon: <Share2 size={22} />, label: 'Social Media Marketing', color: '#E4403B' },
+  { icon: <Target size={22} />, label: 'Paid Advertising (PPC)', color: '#2D3E50' },
 ];
 
 /* ───────────────────────────────────────────
@@ -296,8 +296,8 @@ const Home = ({ onBookCall = () => {} }) => {
           font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.1em;
-          background: #fff1e6;
-          color: #f97316;
+          background: var(--color-primary-light);
+          color: var(--color-primary);
           padding: 0.35rem 1rem;
           border-radius: 40px;
           margin-bottom: 1rem;
@@ -313,7 +313,7 @@ const Home = ({ onBookCall = () => {} }) => {
         }
 
         .text-gradient {
-          background: linear-gradient(135deg, #f97316, #fb923c);
+          background: var(--gradient-primary);
           background-clip: text;
           -webkit-background-clip: text;
           color: transparent;
@@ -337,7 +337,7 @@ const Home = ({ onBookCall = () => {} }) => {
           align-items: center;
           gap: 0.65rem;
           padding: 0.85rem 2rem;
-          background: linear-gradient(135deg, #f97316, #fb923c);
+          background: var(--gradient-primary);
           color: #fff;
           font-weight: 700;
           font-size: 1rem;
@@ -345,21 +345,22 @@ const Home = ({ onBookCall = () => {} }) => {
           border-radius: 9999px;
           cursor: pointer;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          box-shadow: 0 10px 25px rgba(249,115,22,0.25);
+          box-shadow: 0 10px 25px rgba(228, 64, 59, 0.25);
         }
 
         .hp-cta-btn:hover {
           transform: translateY(-3px);
-          box-shadow: 0 20px 35px rgba(249,115,22,0.35);
+          box-shadow: 0 20px 35px rgba(228, 64, 59, 0.35);
         }
 
         .hp-cta-btn--dark {
-          background: linear-gradient(135deg, #4f46e5, #7c3aed);
-          box-shadow: 0 10px 25px rgba(79,70,229,0.25);
+          background: linear-gradient(135deg, #1f1f1f 0%, #111111 100%);
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+          border: 1px solid rgba(255, 255, 255, 0.12);
         }
 
         .hp-cta-btn--dark:hover {
-          box-shadow: 0 20px 35px rgba(79,70,229,0.35);
+          box-shadow: 0 20px 35px rgba(0, 0, 0, 0.5);
         }
 
         /* ----- services chips ----- */
@@ -397,7 +398,7 @@ const Home = ({ onBookCall = () => {} }) => {
 
         /* ----- process steps ----- */
         .hp-process-preview {
-          background: #0f172a;
+          background: linear-gradient(180deg, #111111 0%, #080808 100%);
         }
 
         .hp-process-preview .hp-preview-title {
@@ -430,14 +431,14 @@ const Home = ({ onBookCall = () => {} }) => {
 
         .hp-process-step:hover {
           background: rgba(255,255,255,0.08);
-          border-color: #4f46e5;
+          border-color: var(--color-primary);
           transform: translateY(-4px);
         }
 
         .hp-step-num {
           font-size: 0.85rem;
           font-weight: 800;
-          color: #4f46e5;
+          color: var(--color-primary);
           background: #fff;
           width: 28px;
           height: 28px;
@@ -497,7 +498,7 @@ const Home = ({ onBookCall = () => {} }) => {
         .hp-founder-label {
           font-size: 0.85rem;
           font-weight: 700;
-          color: #f97316;
+          color: var(--color-primary);
           text-transform: uppercase;
           letter-spacing: 0.1em;
         }
@@ -524,7 +525,7 @@ const Home = ({ onBookCall = () => {} }) => {
           line-height: 1.7;
           margin: 0.5rem 0;
           padding-left: 1.25rem;
-          border-left: 4px solid #f97316;
+          border-left: 4px solid var(--color-primary);
         }
 
         /* ----- portfolio grid ----- */
@@ -584,7 +585,7 @@ const Home = ({ onBookCall = () => {} }) => {
           font-size: 0.7rem;
           font-weight: 700;
           text-transform: uppercase;
-          background: #f97316;
+          background: var(--color-primary);
           padding: 0.25rem 0.75rem;
           border-radius: 30px;
         }
@@ -633,8 +634,8 @@ const Home = ({ onBookCall = () => {} }) => {
           width: fit-content;
           padding: 9px 14px;
           border-radius: 999px;
-          background: linear-gradient(135deg, rgba(37,99,235,0.10), rgba(16,185,129,0.10));
-          color: #1d4ed8;
+          background: rgba(228, 64, 59, 0.1);
+          color: var(--color-primary);
           font-weight: 800;
           font-size: 0.88rem;
         }
@@ -649,7 +650,7 @@ const Home = ({ onBookCall = () => {} }) => {
         }
 
         .hp-ct-highlight {
-          color: #2563eb;
+          color: var(--color-primary);
         }
 
         .hp-ct-subtitle {
@@ -681,9 +682,9 @@ const Home = ({ onBookCall = () => {} }) => {
         }
 
         .hp-ct-btn--primary {
-          background: linear-gradient(135deg, #2563eb, #7c3aed);
+          background: var(--gradient-primary);
           color: #fff;
-          box-shadow: 0 12px 28px rgba(37,99,235,0.22);
+          box-shadow: 0 12px 28px rgba(228, 64, 59, 0.22);
         }
 
         .hp-ct-btn--outline {
@@ -801,7 +802,7 @@ const Home = ({ onBookCall = () => {} }) => {
           .hp-founder-desc {
             padding-left: 0;
             border-left: none;
-            border-top: 3px solid #f97316;
+            border-top: 3px solid var(--color-primary);
             padding-top: 1rem;
             margin-top: 0.5rem;
           }

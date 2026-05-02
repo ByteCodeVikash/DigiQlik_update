@@ -7,25 +7,25 @@ const marketingServices = [
     title: "Search Engine Optimization (SEO)",
     description: "Boost your organic visibility and drive high-intent traffic to your website. We implement technical, on-page, and off-page strategies to dominate search rankings.",
     icon: <Search size={28} className="service-icon-svg" />,
-    color: "#3b82f6"
+    color: "#E4403B"
   },
   {
     title: "Social Media Marketing",
     description: "Build a loyal community and elevate brand awareness. Our engaging content and strategic campaigns connect you with your target audience across all major platforms.",
     icon: <Share2 size={28} className="service-icon-svg" />,
-    color: "#ec4899"
+    color: "#2D3E50"
   },
   {
     title: "Branding & Identity",
     description: "Craft a memorable and impactful brand presence. From logos to comprehensive visual systems, we ensure your brand resonates and stands out in the market.",
     icon: <Palette size={28} className="service-icon-svg" />,
-    color: "#8b5cf6"
+    color: "#E4403B"
   },
   {
     title: "Paid Advertising (PPC)",
     description: "Maximize your ROI with data-driven ad campaigns. We expertly manage Google Ads and Meta Ads to deliver instant, high-quality leads and conversions.",
     icon: <Target size={28} className="service-icon-svg" />,
-    color: "#10b981"
+    color: "#2D3E50"
   }
 ];
 

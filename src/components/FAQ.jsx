@@ -82,38 +82,49 @@ const FAQ = () => {
       </div>
 
       <style>{`
+        /* ── SERVICES GRID — Clean Light Section ────────────── */
         .faq-section {
-          padding: clamp(3rem, 5vw, 5rem) 1rem;
-          background:
-            radial-gradient(circle at top, rgba(79,70,229,0.14), transparent 32%),
-            linear-gradient(180deg, #0b1020 0%, #070d1a 100%);
-          color: #e2e8f0;
+          padding: clamp(4rem, 6vw, 6rem) 1rem;
+          background: #F8F5F4;
+          color: #1E293B;
           font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .faq-section::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(ellipse at 50% 0%, rgba(228,64,59,0.07) 0%, transparent 65%);
+          pointer-events: none;
         }
 
         .faq-section .container {
           max-width: 1240px;
           margin: 0 auto;
+          position: relative;
+          z-index: 1;
         }
 
         .faq-section .section-header {
           text-align: center;
-          margin-bottom: 2rem;
+          margin-bottom: 2.5rem;
         }
 
         .faq-section .section-tag {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          padding: 0.35rem 1rem;
+          padding: 0.35rem 1.1rem;
           border-radius: 999px;
           font-size: 0.72rem;
           font-weight: 700;
           letter-spacing: 0.16em;
           text-transform: uppercase;
-          color: #c4b5fd;
-          border: 1px solid rgba(129,140,248,0.25);
-          background: rgba(99,102,241,0.12);
+          color: #E4403B;
+          border: 1px solid rgba(228, 64, 59, 0.3);
+          background: rgba(228, 64, 59, 0.08);
           margin-bottom: 1rem;
         }
 
@@ -123,7 +134,7 @@ const FAQ = () => {
           line-height: 1.1;
           font-weight: 800;
           letter-spacing: -0.03em;
-          color: #f8fafc;
+          color: #111111;
         }
 
         .faq-section .section-subtitle {
@@ -131,41 +142,38 @@ const FAQ = () => {
           margin: 0.9rem auto 0;
           font-size: 1rem;
           line-height: 1.7;
-          color: #94a3b8;
+          color: #64748B;
         }
 
         .faq-section .services-grid {
           display: grid;
           grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 1.25rem;
+          gap: 1.5rem;
         }
 
         .faq-section .service-card {
           overflow: hidden;
           border-radius: 22px;
-          background: rgba(15,23,42,0.72);
-          border: 1px solid rgba(99,102,241,0.14);
-          box-shadow: 0 10px 30px -14px rgba(0,0,0,0.5);
-          backdrop-filter: blur(12px);
-          transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+          background: #FFFFFF;
+          border: 1px solid rgba(0,0,0,0.07);
+          box-shadow: 0 4px 24px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04);
+          transition: all 0.28s ease;
           display: flex;
           flex-direction: column;
           min-height: 100%;
-          border-top: none;
         }
 
         .faq-section .service-card:hover {
           transform: translateY(-6px);
-          border-color: rgba(129,140,248,0.35);
-          box-shadow: 0 22px 44px -18px rgba(0,0,0,0.65);
-          border-top-color: transparent;
+          border-color: rgba(228, 64, 59, 0.22);
+          box-shadow: 0 20px 44px -12px rgba(228,64,59,0.18), 0 4px 16px rgba(0,0,0,0.08);
         }
 
         .faq-section .service-image-wrapper {
           position: relative;
           aspect-ratio: 16 / 10;
           overflow: hidden;
-          background: #0b1120;
+          background: #f1f5f9;
         }
 
         .faq-section .service-image {
@@ -186,9 +194,9 @@ const FAQ = () => {
           inset: 0;
           background: linear-gradient(
             180deg,
-            rgba(2,6,23,0.02) 0%,
-            rgba(2,6,23,0.18) 45%,
-            rgba(2,6,23,0.4) 100%
+            rgba(0,0,0,0.01) 0%,
+            rgba(0,0,0,0.12) 50%,
+            rgba(0,0,0,0.32) 100%
           );
           pointer-events: none;
         }
@@ -197,40 +205,38 @@ const FAQ = () => {
           display: flex;
           flex-direction: column;
           gap: 0.85rem;
-          padding: 1.35rem;
+          padding: 1.5rem;
           flex: 1;
         }
 
         .faq-section .service-icon {
-          width: 54px;
-          height: 54px;
-          border-radius: 16px;
+          width: 52px;
+          height: 52px;
+          border-radius: 14px;
           display: flex;
           align-items: center;
           justify-content: center;
-          background: linear-gradient(135deg, rgba(79,70,229,0.2), rgba(124,58,237,0.2));
-          color: #c4b5fd;
-          border: 1px solid rgba(129,140,248,0.18);
+          background: linear-gradient(135deg, #ffeceb, #ffe0de);
+          color: #E4403B;
+          border: 1px solid rgba(228, 64, 59, 0.15);
           flex-shrink: 0;
-          margin-bottom: 0;
-          margin-top: 0;
           position: static;
         }
 
         .faq-section .service-title {
           margin: 0;
-          font-size: 1.1rem;
+          font-size: 1.08rem;
           line-height: 1.35;
           font-weight: 700;
-          color: #f8fafc;
+          color: #111111;
           letter-spacing: -0.01em;
         }
 
         .faq-section .service-desc {
           margin: 0;
-          font-size: 0.95rem;
+          font-size: 0.93rem;
           line-height: 1.7;
-          color: #94a3b8;
+          color: #64748B;
           flex: 1;
         }
 
@@ -240,16 +246,16 @@ const FAQ = () => {
           gap: 0.45rem;
           width: fit-content;
           margin-top: 0.2rem;
-          color: #a5b4fc;
+          color: #E4403B;
           text-decoration: none;
           font-size: 0.9rem;
           font-weight: 700;
-          transition: color 0.2s ease, transform 0.2s ease;
+          transition: color 0.2s ease, gap 0.2s ease;
         }
 
         .faq-section .service-link:hover {
-          color: #ddd6fe;
-          transform: translateX(2px);
+          color: #c0392b;
+          gap: 0.65rem;
         }
 
         .faq-section .service-link svg {
@@ -257,7 +263,7 @@ const FAQ = () => {
         }
 
         .faq-section .service-link:hover svg {
-          transform: translateX(2px);
+          transform: translateX(3px);
         }
 
         @media (max-width: 1024px) {
@@ -268,20 +274,17 @@ const FAQ = () => {
 
         @media (max-width: 640px) {
           .faq-section {
-            padding: 2.5rem 0.9rem;
+            padding: 3rem 0.9rem;
           }
-
           .faq-section .services-grid {
             grid-template-columns: 1fr;
             gap: 1rem;
           }
-
           .faq-section .section-subtitle {
             font-size: 0.95rem;
           }
-
           .faq-section .service-content {
-            padding: 1.15rem;
+            padding: 1.2rem;
           }
         }
       `}</style>

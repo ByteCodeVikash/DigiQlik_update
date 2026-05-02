@@ -233,8 +233,8 @@ export default function CoursesPage() {
         .courses-page{
           min-height:100vh;
           background:
-            radial-gradient(circle at top left, rgba(59,130,246,.12), transparent 28%),
-            radial-gradient(circle at bottom right, rgba(16,185,129,.10), transparent 30%),
+            radial-gradient(circle at top left, rgba(228, 64, 59, 0.12), transparent 28%),
+            radial-gradient(circle at bottom right, rgba(45, 62, 80, 0.10), transparent 30%),
             linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
           color:#0f172a;
           padding:32px 18px 70px;
@@ -276,8 +276,8 @@ export default function CoursesPage() {
           width:fit-content;
           padding:10px 14px;
           border-radius:999px;
-          background:linear-gradient(135deg, rgba(37,99,235,.10), rgba(16,185,129,.10));
-          color:#1d4ed8;
+          background: rgba(228, 64, 59, 0.1);
+          color: var(--color-primary);
           font-weight:800;
           font-size:.92rem;
           margin-bottom:18px;
@@ -291,7 +291,7 @@ export default function CoursesPage() {
           max-width:15ch;
         }
 
-        .cp-title span{ color:#2563eb; }
+        .cp-title span{ color: var(--color-primary); }
 
         .cp-subtitle{
           font-size:1.02rem;
@@ -321,9 +321,9 @@ export default function CoursesPage() {
         }
 
         .cp-btn{
-          background:linear-gradient(135deg, #2563eb, #7c3aed);
+          background: var(--gradient-primary);
           color:#fff;
-          box-shadow:0 14px 30px rgba(37,99,235,.22);
+          box-shadow:0 14px 30px rgba(228, 64, 59, 0.22);
         }
 
         .cp-btn-secondary{
@@ -484,10 +484,10 @@ export default function CoursesPage() {
           width:46px;
           height:46px;
           border-radius:16px;
-          background:linear-gradient(135deg, rgba(37,99,235,.12), rgba(124,58,237,.12));
+          background: rgba(228, 64, 59, 0.1);
           display:grid;
           place-items:center;
-          color:#2563eb;
+          color: var(--color-primary);
           flex:0 0 auto;
         }
 
@@ -509,8 +509,8 @@ export default function CoursesPage() {
           align-items:center;
           padding:7px 11px;
           border-radius:999px;
-          background:#eff6ff;
-          color:#1d4ed8;
+          background: var(--color-primary-light);
+          color: var(--color-primary);
           font-size:.84rem;
           font-weight:800;
         }
@@ -578,7 +578,7 @@ export default function CoursesPage() {
           display:inline-flex;
           align-items:center;
           gap:8px;
-          color:#2563eb;
+          color: var(--color-primary);
           font-weight:800;
           text-decoration:none;
           white-space:nowrap;
@@ -879,7 +879,7 @@ export default function CoursesPage() {
                     onClick={() => setActiveId(course.id)}
                     style={{
                       cursor: "pointer",
-                      outline: active ? "2px solid #2563eb" : "none",
+                      outline: active ? "2px solid #E4403B" : "none",
                     }}
                   >
                     <div

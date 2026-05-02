@@ -30,8 +30,8 @@ const Process = () => {
         .process-section {
           padding: 60px 20px;
           background:
-            radial-gradient(circle at top, rgba(79, 70, 229, 0.18), transparent 35%),
-            linear-gradient(180deg, #0b1020 0%, #060816 100%);
+            radial-gradient(circle at top, rgba(228, 64, 59, 0.22), transparent 35%),
+            linear-gradient(180deg, #111111 0%, #080808 100%);
           color: #fff;
           position: relative;
           overflow: hidden;
@@ -68,9 +68,9 @@ const Process = () => {
           display: inline-block;
           padding: 8px 16px;
           border-radius: 999px;
-          background: rgba(99, 102, 241, 0.15);
-          color: #a5b4fc;
-          border: 1px solid rgba(99, 102, 241, 0.25);
+          background: rgba(228, 64, 59, 0.1);
+          color: #FF6B66;
+          border: 1px solid rgba(228, 64, 59, 0.25);
           font-size: 14px;
           font-weight: 600;
           letter-spacing: 0.5px;
@@ -99,8 +99,8 @@ const Process = () => {
         }
 
         .process-step {
-          background: rgba(15, 23, 42, 0.78);
-          border: 1px solid rgba(148, 163, 184, 0.16);
+          background: rgba(28, 18, 18, 0.78);
+          border: 1px solid rgba(255, 210, 200, 0.1);
           border-radius: 22px;
           padding: 28px 24px;
           backdrop-filter: blur(10px);
@@ -111,7 +111,7 @@ const Process = () => {
 
         .process-step:hover {
           transform: translateY(-8px);
-          border-color: rgba(99, 102, 241, 0.4);
+          border-color: rgba(228, 64, 59, 0.4);
           box-shadow: 0 24px 60px rgba(0, 0, 0, 0.38);
         }
 
@@ -124,8 +124,8 @@ const Process = () => {
           font-size: 1rem;
           font-weight: 800;
           color: #ffffff;
-          background: linear-gradient(135deg, #4f46e5, #7c3aed);
-          box-shadow: 0 12px 24px rgba(79, 70, 229, 0.35);
+          background: var(--gradient-primary);
+          box-shadow: 0 12px 24px rgba(228, 64, 59, 0.35);
           margin-bottom: 18px;
         }
 

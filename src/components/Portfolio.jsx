@@ -1,4 +1,6 @@
 import React, { useMemo, useState } from 'react';
+import { ArrowRight, Layout, Sparkles, Star, Video } from 'lucide-react';
+import ScheduleMeetingModal from './ScheduleMeetingModal';
 
 // Rebranding & Marketing images
 import rebrandingMarketing0 from '../assets/rebranding and marketing.jpeg';
@@ -26,7 +28,7 @@ import villaOptionImg from '../assets/villa option.jpeg';
 import yesGasServiceImg from '../assets/yesgasservice.jpeg';
 import gharKaMarketImg from '../assets/gharkamarket.jpeg';
 
-// 🎥 Videos – imported directly (no need to move them into root /public)
+// 🎥 Videos
 import media1 from '../public/Media1.mp4';
 import media2 from '../public/Media2.mp4';
 import media3 from '../public/Media3.mp4';
@@ -65,19 +67,19 @@ const ICONS = {
 
 /* ─── Tag colours ────────────────────────────────────────────────────── */
 const TAG_COLORS = {
-  'Web App': { bg: 'rgba(99,102,241,0.18)', color: '#a5b4fc' },
-  'E-Commerce': { bg: 'rgba(16,185,129,0.18)', color: '#6ee7b7' },
-  'Gas Service': { bg: 'rgba(245,158,11,0.18)', color: '#fcd34d' },
-  Agency: { bg: 'rgba(236,72,153,0.18)', color: '#f9a8d4' },
-  FinTech: { bg: 'rgba(59,130,246,0.18)', color: '#93c5fd' },
-  'Real Estate': { bg: 'rgba(34,197,94,0.18)', color: '#86efac' },
-  CRM: { bg: 'rgba(14,165,233,0.18)', color: '#7dd3fc' },
-  Portfolio: { bg: 'rgba(168,85,247,0.18)', color: '#d8b4fe' },
-  Fashion: { bg: 'rgba(244,114,182,0.18)', color: '#f9a8d4' },
-  Electronics: { bg: 'rgba(249,115,22,0.18)', color: '#fdba74' },
+  'Web App': { bg: 'rgba(228,64,59,0.18)', color: '#FF6B66' },
+  'E-Commerce': { bg: 'rgba(45,62,80,0.18)', color: '#94a3b8' },
+  'Gas Service': { bg: 'rgba(228,64,59,0.18)', color: '#FF6B66' },
+  Agency: { bg: 'rgba(45,62,80,0.18)', color: '#94a3b8' },
+  FinTech: { bg: 'rgba(228,64,59,0.18)', color: '#FF6B66' },
+  'Real Estate': { bg: 'rgba(45,62,80,0.18)', color: '#94a3b8' },
+  CRM: { bg: 'rgba(228,64,59,0.18)', color: '#FF6B66' },
+  Portfolio: { bg: 'rgba(45,62,80,0.18)', color: '#94a3b8' },
+  Fashion: { bg: 'rgba(228,64,59,0.18)', color: '#FF6B66' },
+  Electronics: { bg: 'rgba(45,62,80,0.18)', color: '#94a3b8' },
 };
 
-/* ─── Web Design projects (with fixed image fallback) ───────────────── */
+/* ─── Web Design projects ────────────────────────────────────────────── */
 const WEB_PROJECTS = [
   {
     title: 'Attention Seeker 3D Portfolio',
@@ -222,32 +224,32 @@ const MARKETING_BRANDING_DATA = {
       title: 'Brand Identity',
       desc: 'Logos, visual systems, and consistent brand assets that make your business look polished and memorable.',
       metric: 'Clear brand direction',
-      iconBg: 'rgba(168,85,247,0.16)',
-      iconColor: '#d8b4fe',
+      iconBg: 'rgba(228,64,59,0.16)',
+      iconColor: '#E4403B',
     },
     {
       icon: 'social',
       title: 'Social Media Marketing',
       desc: 'Creative content planning and campaign direction to help your brand stay visible and engaging.',
       metric: 'Better audience reach',
-      iconBg: 'rgba(14,165,233,0.16)',
-      iconColor: '#7dd3fc',
+      iconBg: 'rgba(45,62,80,0.16)',
+      iconColor: '#2D3E50',
     },
     {
       icon: 'ads',
       title: 'Performance Advertising',
       desc: 'Targeted ad strategies designed to bring in leads, boost sales, and improve campaign efficiency.',
       metric: 'Focused conversions',
-      iconBg: 'rgba(245,158,11,0.16)',
-      iconColor: '#fcd34d',
+      iconBg: 'rgba(228,64,59,0.16)',
+      iconColor: '#E4403B',
     },
     {
       icon: 'email',
       title: 'Email Marketing',
       desc: 'Simple, effective email flows that help you stay connected with customers and drive repeat business.',
       metric: 'Stronger retention',
-      iconBg: 'rgba(99,102,241,0.16)',
-      iconColor: '#a5b4fc',
+      iconBg: 'rgba(45,62,80,0.16)',
+      iconColor: '#2D3E50',
     },
   ],
   gallery: [
@@ -259,7 +261,7 @@ const MARKETING_BRANDING_DATA = {
   ],
 };
 
-/* ─── Video projects (using imported files, so videos work from anywhere) ─ */
+/* ─── Video projects ─────────────────────────────────────────────────── */
 const VIDEO_PROJECTS = [
   {
     title: 'Prime Estate Showreel',
@@ -349,8 +351,8 @@ const ProjectCard = ({ project }) => {
             decoding="async"
             className="pf-img"
             onError={(e) => {
-              e.target.onerror = null; // prevent infinite loop
-              e.target.style.display = 'none'; // hide broken image, fallback emoji stays visible
+              e.target.onerror = null;
+              e.target.style.display = 'none';
             }}
           />
         </div>
@@ -393,7 +395,7 @@ const VideoCard = ({ project }) => (
   </article>
 );
 
-const ServiceSection = ({ data }) => (
+const ServiceSection = ({ data, onCtaClick }) => (
   <section className="ps-service-wrap">
     <div className="ps-service-header">
       <span className="ps-service-pill">{data.tag}</span>
@@ -438,9 +440,9 @@ const ServiceSection = ({ data }) => (
     )}
 
     <div className="ps-service-cta">
-      <a href="#contact" className="ps-cta-btn">
+      <button onClick={onCtaClick} className="ps-cta-btn" type="button">
         {data.cta} <span>→</span>
-      </a>
+      </button>
     </div>
   </section>
 );
@@ -449,25 +451,21 @@ const ServiceSection = ({ data }) => (
 const Portfolio = () => {
   const [activeCategory, setActiveCategory] = useState('All');
   const [search, setSearch] = useState('');
+  const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
+
+  const handleOpenProjectModal = () => setIsProjectModalOpen(true);
+  const handleCloseProjectModal = () => setIsProjectModalOpen(false);
 
   const matchesSearch = (item) => {
     const q = search.trim().toLowerCase();
     if (!q) return true;
-
     return [item.title, item.desc, item.tag]
       .filter(Boolean)
       .some((text) => text.toLowerCase().includes(q));
   };
 
-  const visibleWebProjects = useMemo(
-    () => WEB_PROJECTS.filter(matchesSearch),
-    [search]
-  );
-
-  const visibleVideos = useMemo(
-    () => VIDEO_PROJECTS.filter(matchesSearch),
-    [search]
-  );
+  const visibleWebProjects = useMemo(() => WEB_PROJECTS.filter(matchesSearch), [search]);
+  const visibleVideos = useMemo(() => VIDEO_PROJECTS.filter(matchesSearch), [search]);
 
   const showMarketing = useMemo(() => {
     if (!search.trim()) return true;
@@ -480,7 +478,6 @@ const Portfolio = () => {
     ]
       .join(' ')
       .toLowerCase();
-
     return haystack.includes(q);
   }, [search]);
 
@@ -492,84 +489,225 @@ const Portfolio = () => {
     (activeCategory === 'Video' && visibleVideos.length > 0);
 
   return (
-    <section className="pf-root" id="portfolio">
-      <div className="pf-container">
-        <SectionHeader
-          pill="Our Work"
-          title="Featured Projects"
-          subtitle="A cleaner, easier-to-scan portfolio with better mobile behavior, clearer sections, and quick filtering."
-        />
+    <div className="pf-page">
 
-        <SearchBar value={search} onChange={setSearch} />
-        <CategoryTabs activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
-
-        {!hasAnyResults && (
-          <div className="pf-empty">
-            <h3>No results found</h3>
-            <p>Try a different category or clear the search box.</p>
+      {/* ── HERO ── */}
+      <section className="pf-hero">
+        <div className="pf-hero-inner">
+          <div className="pf-hero-badge">
+            <Sparkles size={12} />
+            Our Portfolio
           </div>
-        )}
+          <h1 className="pf-hero-h1">
+            Work That <em>Speaks</em>
+          </h1>
+          <p className="pf-hero-p">
+            16+ web projects, 5 video showreels, and complete brand campaigns —
+            each built to drive real results for our clients.
+          </p>
+          <div className="pf-trust-row">
+            <span className="pf-trust-pill"><Layout size={14} /> 16+ Web Projects</span>
+            <span className="pf-trust-dot" />
+            <span className="pf-trust-pill"><Video size={14} /> 5 Video Showreels</span>
+            <span className="pf-trust-dot" />
+            <span className="pf-trust-pill"><Star size={14} /> Brand Campaigns</span>
+          </div>
+          <a href="#portfolio" className="pf-hero-cta">
+            View Projects <ArrowRight size={16} />
+          </a>
+        </div>
+      </section>
 
-        {hasAnyResults && (
-          <>
-            {activeCategory === 'All' && showMarketing && (
-              <div className="pf-block">
-                <ServiceSection data={MARKETING_BRANDING_DATA} />
-              </div>
-            )}
+      {/* ── MAIN CONTENT ── */}
+      <section className="pf-root" id="portfolio">
+        <div className="pf-container">
+          <SectionHeader
+            pill="Our Work"
+            title="Featured Projects"
+            subtitle="Browse web design, video production, and marketing campaigns — filtered by category or searched by keyword."
+          />
 
-            {activeCategory === 'Marketing & Branding' && showMarketing && (
-              <ServiceSection data={MARKETING_BRANDING_DATA} />
-            )}
+          <SearchBar value={search} onChange={setSearch} />
+          <CategoryTabs activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
 
-            {(activeCategory === 'All' || activeCategory === 'Web Design') && visibleWebProjects.length > 0 && (
-              <section className="pf-block">
-                {activeCategory === 'All' && (
-                  <div className="pf-section-label">
-                    <h3>Web Design</h3>
-                    <span>{visibleWebProjects.length} projects</span>
-                  </div>
-                )}
+          {!hasAnyResults && (
+            <div className="pf-empty">
+              <h3>No results found</h3>
+              <p>Try a different category or clear the search box.</p>
+            </div>
+          )}
 
-                <div className="pf-grid">
-                  {visibleWebProjects.map((project, idx) => (
-                    <ProjectCard key={`${project.title}-${idx}`} project={project} />
-                  ))}
+          {hasAnyResults && (
+            <>
+              {activeCategory === 'All' && showMarketing && (
+                <div className="pf-block">
+                  <ServiceSection data={MARKETING_BRANDING_DATA} onCtaClick={handleOpenProjectModal} />
                 </div>
-              </section>
-            )}
+              )}
 
-            {(activeCategory === 'All' || activeCategory === 'Video') && visibleVideos.length > 0 && (
-              <section className="pf-block">
-                {activeCategory === 'All' && (
-                  <div className="pf-section-label">
-                    <h3>Video</h3>
-                    <span>{visibleVideos.length} projects</span>
+              {activeCategory === 'Marketing & Branding' && showMarketing && (
+                <ServiceSection data={MARKETING_BRANDING_DATA} onCtaClick={handleOpenProjectModal} />
+              )}
+
+              {(activeCategory === 'All' || activeCategory === 'Web Design') && visibleWebProjects.length > 0 && (
+                <section className="pf-block">
+                  {activeCategory === 'All' && (
+                    <div className="pf-section-label">
+                      <h3>Web Design</h3>
+                      <span>{visibleWebProjects.length} projects</span>
+                    </div>
+                  )}
+                  <div className="pf-grid">
+                    {visibleWebProjects.map((project, idx) => (
+                      <ProjectCard key={`${project.title}-${idx}`} project={project} />
+                    ))}
                   </div>
-                )}
+                </section>
+              )}
 
-                <div className="pf-video-grid">
-                  {visibleVideos.map((project, idx) => (
-                    <VideoCard key={`${project.title}-${idx}`} project={project} />
-                  ))}
-                </div>
-              </section>
-            )}
-          </>
-        )}
-      </div>
+              {(activeCategory === 'All' || activeCategory === 'Video') && visibleVideos.length > 0 && (
+                <section className="pf-block">
+                  {activeCategory === 'All' && (
+                    <div className="pf-section-label">
+                      <h3>Video</h3>
+                      <span>{visibleVideos.length} projects</span>
+                    </div>
+                  )}
+                  <div className="pf-video-grid">
+                    {visibleVideos.map((project, idx) => (
+                      <VideoCard key={`${project.title}-${idx}`} project={project} />
+                    ))}
+                  </div>
+                </section>
+              )}
+            </>
+          )}
+
+          <ScheduleMeetingModal
+            isOpen={isProjectModalOpen}
+            onClose={handleCloseProjectModal}
+            title="Start Your Project"
+            subtitle="Tell us about your requirements and we'll get back to you with a tailored proposal."
+            emoji="🚀"
+            formType="Portfolio Start Project"
+            showMessageField={true}
+          />
+        </div>
+      </section>
+
+      {/* ── BOTTOM CTA ── */}
+      <section className="pf-bottom-cta">
+        <div className="pf-bottom-cta-inner">
+          <div className="pf-bottom-cta-badge">
+            <Sparkles size={12} /> Start a Project
+          </div>
+          <h2 className="pf-bottom-cta-h2">
+            Like What You See?<br />
+            <em>Let's Build Yours.</em>
+          </h2>
+          <p className="pf-bottom-cta-p">
+            Tell us your vision and we'll turn it into a high-performance
+            digital product — website, brand, or campaign.
+          </p>
+          <div className="pf-bottom-cta-actions">
+            <button className="pf-bottom-cta-btn" onClick={handleOpenProjectModal}>
+              Start a Project <ArrowRight size={16} />
+            </button>
+          </div>
+          <p className="pf-bottom-cta-note">
+            Web · Marketing · Branding · Video — custom quote in 24 hours
+          </p>
+        </div>
+      </section>
 
       <style>{`
-        /* Base Reset & Root */
+        /* ── PAGE WRAPPER ─────────────────────────────────── */
+        .pf-page {
+          font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+          background: var(--bg-dark-master);
+        }
+
+        /* ── HERO ─────────────────────────────────────────── */
+        .pf-hero {
+          padding: clamp(80px, 11vw, 130px) 1.5rem clamp(70px, 9vw, 110px);
+          background: var(--gradient-dark-master);
+          position: relative; overflow: hidden; text-align: center;
+        }
+        .pf-hero::before {
+          content: ""; position: absolute; inset: 0;
+          background: var(--gradient-glow-master); pointer-events: none;
+        }
+        .pf-hero::after {
+          content: ""; position: absolute; inset: 0;
+          background-image:
+            linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+          background-size: 50px 50px; pointer-events: none;
+        }
+        .pf-hero-inner {
+          max-width: 720px; margin: 0 auto; position: relative; z-index: 1;
+        }
+        .pf-hero-badge {
+          display: inline-flex; align-items: center; gap: 8px;
+          padding: 7px 20px; border-radius: 999px;
+          background: rgba(228,64,59,0.14); border: 1px solid rgba(228,64,59,0.32);
+          color: #f8a09d; font-size: 0.75rem; font-weight: 700;
+          letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.8rem;
+        }
+        .pf-hero-h1 {
+          font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 800;
+          line-height: 1.06; letter-spacing: -0.038em;
+          color: var(--text-main-dark); margin: 0 0 1.2rem;
+        }
+        .pf-hero-h1 em {
+          font-style: normal;
+          background: linear-gradient(135deg, #E4403B, #f87171);
+          background-clip: text; -webkit-background-clip: text; color: transparent;
+        }
+        .pf-hero-p {
+          font-size: clamp(1rem, 2vw, 1.15rem); color: var(--text-muted-dark);
+          line-height: 1.72; margin: 0 auto 2rem; max-width: 520px;
+        }
+        .pf-trust-row {
+          display: flex; align-items: center; justify-content: center;
+          gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2.4rem;
+        }
+        .pf-trust-pill {
+          display: flex; align-items: center; gap: 6px;
+          color: #94a3b8; font-size: 0.88rem; font-weight: 600;
+        }
+        .pf-trust-pill svg { color: #E4403B; }
+        .pf-trust-dot { width: 4px; height: 4px; border-radius: 50%; background: #E4403B; }
+        .pf-hero-cta {
+          display: inline-flex; align-items: center; gap: 8px;
+          padding: 13px 26px; border-radius: 9999px;
+          background: linear-gradient(135deg, #E4403B, #c0392b);
+          color: #fff; font-weight: 700; font-size: 0.97rem;
+          border: none; cursor: pointer; text-decoration: none;
+          box-shadow: 0 10px 28px rgba(228,64,59,0.28);
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .pf-hero-cta:hover {
+          transform: translateY(-3px); box-shadow: 0 18px 38px rgba(228,64,59,0.38);
+        }
+
+        /* ── CONTENT ROOT ─────────────────────────────────── */
         .pf-root {
-          background:
-            radial-gradient(circle at top, rgba(79,70,229,0.22), transparent 30%),
-            linear-gradient(160deg, #070d1a 0%, #0d1525 55%, #070d1a 100%);
+          background: #FFFFFF;
           font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
           padding: clamp(3rem, 6vw, 6rem) 1rem;
-          color: #e2e8f0;
+          color: #111111;
           width: 100%;
           overflow-x: hidden;
+          position: relative;
+        }
+
+        .pf-root::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(ellipse at 50% 0%, rgba(228,64,59,0.07) 0%, transparent 65%);
+          pointer-events: none;
         }
 
         .pf-container {
@@ -580,7 +718,7 @@ const Portfolio = () => {
           box-sizing: border-box;
         }
 
-        /* Headers & Typography */
+        /* ── SECTION HEADER ───────────────────────────────── */
         .pf-header {
           text-align: center;
           margin-bottom: 2.5rem;
@@ -592,11 +730,11 @@ const Portfolio = () => {
           font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.18em;
-          background: rgba(99,102,241,0.15);
-          border: 1px solid rgba(99,102,241,0.3);
+          background: rgba(228, 64, 59, 0.15);
+          border: 1px solid rgba(228, 64, 59, 0.3);
           padding: 0.35rem 1.1rem;
           border-radius: 999px;
-          color: #a5b4fc;
+          color: #FF6B66;
           margin-bottom: 1rem;
         }
 
@@ -605,22 +743,19 @@ const Portfolio = () => {
           font-weight: 800;
           letter-spacing: -0.03em;
           line-height: 1.12;
-          background: linear-gradient(135deg, #fff 20%, #94a3b8 100%);
-          background-clip: text;
-          -webkit-background-clip: text;
-          color: transparent;
+          color: #111111;
           margin: 0 0 0.85rem;
         }
 
         .pf-subtitle, .ps-service-intro {
           font-size: 1rem;
-          color: #94a3b8;
+          color: #64748B;
           max-width: 760px;
           margin: 0 auto;
           line-height: 1.7;
         }
 
-        /* Search & Filters */
+        /* ── SEARCH & FILTERS ─────────────────────────────── */
         .pf-search-wrap {
           display: flex;
           align-items: center;
@@ -632,30 +767,28 @@ const Portfolio = () => {
 
         .pf-search {
           width: 100%;
-          border: 1px solid rgba(148,163,184,0.18);
-          background: rgba(15,23,42,0.7);
-          color: #e2e8f0;
+          border: 1px solid rgba(0,0,0,0.08);
+          background: #FFFFFF;
+          color: #111111;
           border-radius: 999px;
           padding: 0.9rem 1.1rem;
           outline: none;
-          box-shadow: 0 8px 24px rgba(0,0,0,0.18);
-          transition: border-color 0.2s ease, background 0.2s ease;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+          transition: all 0.2s ease;
           font-size: 0.95rem;
         }
 
-        .pf-search::placeholder {
-          color: #64748b;
-        }
+        .pf-search::placeholder { color: #64748b; }
 
         .pf-search:focus {
-          border-color: rgba(129,140,248,0.5);
+          border-color: rgba(228, 64, 59, 0.5);
           background: rgba(15,23,42,0.9);
         }
 
         .pf-clear-btn {
-          border: 1px solid rgba(148,163,184,0.18);
-          background: rgba(30,41,59,0.8);
-          color: #cbd5e1;
+          border: 1px solid rgba(0,0,0,0.08);
+          background: #F1F5F9;
+          color: #64748B;
           border-radius: 999px;
           padding: 0.9rem 1rem;
           cursor: pointer;
@@ -664,9 +797,9 @@ const Portfolio = () => {
         }
 
         .pf-clear-btn:hover {
-          color: #fff;
-          border-color: rgba(129,140,248,0.35);
-          background: rgba(51,65,85,0.9);
+          color: #111111;
+          border-color: rgba(228,64,59,0.3);
+          background: #E2E8F0;
         }
 
         .pf-filters {
@@ -679,25 +812,23 @@ const Portfolio = () => {
         }
 
         .pf-cat-btn {
-          background: rgba(30,41,59,0.6);
-          border: 1px solid rgba(99,102,241,0.15);
-          padding: 0.65rem 1.2rem;
-          font-size: 0.88rem;
+          background: #F1F5F9;
+          border: 1.5px solid rgba(0,0,0,0.06);
+          padding: 8px 20px;
+          font-size: 0.85rem;
           font-weight: 600;
           border-radius: 999px;
-          color: #94a3b8;
+          color: #64748B;
           cursor: pointer;
-          transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+          transition: all 0.18s ease;
           font-family: inherit;
-          backdrop-filter: blur(8px);
           white-space: nowrap;
         }
 
-        .pf-cat-btn:hover {
-          background: rgba(51,65,85,0.75);
-          color: #e2e8f0;
-          border-color: rgba(99,102,241,0.3);
-          transform: translateY(-1px);
+        .pf-cat-btn:hover:not(.pf-cat-active) {
+          border-color: rgba(228, 64, 59, 0.2);
+          color: #111111;
+          background: #E2E8F0;
         }
 
         .pf-cat-btn:focus-visible,
@@ -705,18 +836,18 @@ const Portfolio = () => {
         .pf-live-btn:focus-visible,
         .pf-card-link:focus-visible,
         .ps-cta-btn:focus-visible {
-          outline: 2px solid rgba(129,140,248,0.8);
+          outline: 2px solid rgba(228, 64, 59, 0.8);
           outline-offset: 2px;
         }
 
         .pf-cat-active {
-          background: linear-gradient(135deg, #4f46e5, #7c3aed) !important;
+          background: var(--color-primary) !important;
           color: #fff !important;
-          border-color: transparent !important;
-          box-shadow: 0 8px 22px rgba(79,70,229,0.35);
+          border-color: var(--color-primary) !important;
+          box-shadow: 0 8px 20px rgba(228, 64, 59, 0.25);
         }
 
-        /* Content Blocks */
+        /* ── CONTENT BLOCKS ───────────────────────────────── */
         .pf-block {
           margin-top: 1.8rem;
           animation: pfFadeUp 0.45s ease-out;
@@ -728,24 +859,23 @@ const Portfolio = () => {
           align-items: baseline;
           gap: 1rem;
           margin: 0 0 1.4rem;
-          padding: 0 0.1rem;
-          border-left: 3px solid #4f46e5;
-          padding-left: 1rem;
+          padding: 0 0.1rem 0 1rem;
+          border-left: 3px solid var(--color-primary);
         }
 
         .pf-section-label h3 {
           margin: 0;
           font-size: 1.25rem;
           font-weight: 700;
-          color: #f8fafc;
+          color: #111111;
         }
 
         .pf-section-label span {
           font-size: 0.85rem;
-          color: #94a3b8;
+          color: #64748B;
         }
 
-        /* Grid Layouts */
+        /* ── GRID LAYOUTS ─────────────────────────────────── */
         .pf-grid,
         .pf-video-grid {
           display: grid;
@@ -767,16 +897,15 @@ const Portfolio = () => {
           to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Cards - Web & Video */
+        /* ── CARDS ────────────────────────────────────────── */
         .pf-card,
         .pf-video-card,
         .ps-svc-card,
         .ps-gallery-card,
         .pf-empty {
-          background: rgba(15,23,42,0.75);
-          backdrop-filter: blur(14px);
-          border: 1px solid rgba(99,102,241,0.15);
-          box-shadow: 0 8px 30px -12px rgba(0,0,0,0.45);
+          background: #FFFFFF;
+          border: 1px solid rgba(0,0,0,0.07);
+          box-shadow: 0 4px 24px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04);
         }
 
         .pf-card {
@@ -790,8 +919,8 @@ const Portfolio = () => {
 
         .pf-card:hover {
           transform: translateY(-6px);
-          border-color: rgba(99,102,241,0.4);
-          box-shadow: 0 24px 48px -14px rgba(0,0,0,0.55);
+          border-color: rgba(228, 64, 59, 0.22);
+          box-shadow: 0 20px 44px -12px rgba(228,64,59,0.18), 0 4px 16px rgba(0,0,0,0.08);
         }
 
         .pf-video-card {
@@ -805,14 +934,14 @@ const Portfolio = () => {
 
         .pf-video-card:hover {
           transform: translateY(-4px);
-          box-shadow: 0 18px 40px -12px rgba(0,0,0,0.5);
+          box-shadow: 0 16px 32px -10px rgba(0,0,0,0.1);
         }
 
         .pf-media {
           position: relative;
           overflow: hidden;
           aspect-ratio: 16/9;
-          background: #0b1120;
+          background: #111111;
           flex-shrink: 0;
         }
 
@@ -829,7 +958,7 @@ const Portfolio = () => {
           align-items: center;
           justify-content: center;
           font-size: 3.4rem;
-          background: linear-gradient(145deg, #1e293b, #0f172a);
+          background: linear-gradient(145deg, #1f1414, #111111);
           z-index: 0;
         }
 
@@ -843,9 +972,7 @@ const Portfolio = () => {
           z-index: 1;
         }
 
-        .pf-card:hover .pf-img {
-          transform: scale(1.05);
-        }
+        .pf-card:hover .pf-img { transform: scale(1.05); }
 
         .pf-video-media {
           position: relative;
@@ -864,9 +991,7 @@ const Portfolio = () => {
           transition: filter 0.3s ease;
         }
 
-        .pf-video-card:hover .pf-video-element {
-          filter: brightness(1);
-        }
+        .pf-video-card:hover .pf-video-element { filter: brightness(1); }
 
         .pf-overlay {
           position: absolute;
@@ -881,9 +1006,7 @@ const Portfolio = () => {
         }
 
         .pf-card:hover .pf-overlay,
-        .pf-video-card:hover .pf-overlay {
-          opacity: 1;
-        }
+        .pf-video-card:hover .pf-overlay { opacity: 1; }
 
         .pf-badge {
           padding: 0.45rem 1.1rem;
@@ -905,20 +1028,20 @@ const Portfolio = () => {
           display: inline-flex;
           align-items: center;
           gap: 0.5rem;
-          background: linear-gradient(105deg, #4f46e5, #7c3aed);
+          background: linear-gradient(135deg, #E4403B 0%, #B91C1C 100%);
           padding: 0.7rem 1.4rem;
           border-radius: 999px;
           text-decoration: none;
           color: white;
           font-weight: 700;
           font-size: 0.88rem;
-          box-shadow: 0 8px 18px rgba(79,70,229,0.35);
+          box-shadow: 0 8px 18px rgba(228, 64, 59, 0.35);
           transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .pf-live-btn:hover {
           transform: translateY(-1px) scale(1.02);
-          box-shadow: 0 12px 24px rgba(99,102,241,0.45);
+          box-shadow: 0 12px 24px rgba(228, 64, 59, 0.45);
         }
 
         .pf-content,
@@ -946,14 +1069,14 @@ const Portfolio = () => {
           font-weight: 700;
           letter-spacing: -0.01em;
           line-height: 1.35;
-          color: #f8fafc;
+          color: #111111;
           margin: 0;
         }
 
         .pf-card-desc {
           font-size: 0.9rem;
           line-height: 1.6;
-          color: #94a3b8;
+          color: #64748B;
           display: -webkit-box;
           -webkit-line-clamp: 3;
           -webkit-box-orient: vertical;
@@ -965,7 +1088,7 @@ const Portfolio = () => {
         .pf-card-link {
           font-size: 0.85rem;
           font-weight: 700;
-          color: #a5b4fc;
+          color: #E4403B;
           text-decoration: none;
           margin-top: 0.25rem;
           display: inline-block;
@@ -973,11 +1096,11 @@ const Portfolio = () => {
         }
 
         .pf-card-link:hover {
-          color: #ddd6fe;
+          color: #f87171;
           text-decoration: underline;
         }
 
-        /* Marketing & Branding Section */
+        /* ── MARKETING & BRANDING SECTION ─────────────────── */
         .ps-service-wrap {
           animation: pfFadeUp 0.45s ease-out;
           margin-top: 0.8rem;
@@ -1012,8 +1135,8 @@ const Portfolio = () => {
 
         .ps-svc-card:hover {
           transform: translateY(-4px);
-          border-color: rgba(99,102,241,0.35);
-          box-shadow: 0 18px 36px -12px rgba(0,0,0,0.5);
+          border-color: rgba(228, 64, 59, 0.22);
+          box-shadow: 0 16px 32px -10px rgba(0,0,0,0.08);
         }
 
         .ps-svc-icon {
@@ -1029,13 +1152,13 @@ const Portfolio = () => {
         .ps-svc-title {
           font-size: 1.1rem;
           font-weight: 700;
-          color: #f8fafc;
+          color: #111111;
           margin: 0;
         }
 
         .ps-svc-desc {
           font-size: 0.9rem;
-          color: #94a3b8;
+          color: #64748B;
           line-height: 1.6;
           margin: 0;
           flex: 1;
@@ -1047,26 +1170,26 @@ const Portfolio = () => {
           gap: 0.6rem;
           font-size: 0.75rem;
           font-weight: 700;
-          color: #a5b4fc;
+          color: #E4403B;
           padding-top: 0.75rem;
-          border-top: 1px solid rgba(99,102,241,0.15);
+          border-top: 1px solid rgba(228, 64, 59, 0.15);
         }
 
         .ps-svc-dot {
           width: 7px;
           height: 7px;
           border-radius: 50%;
-          background: #818cf8;
+          background: #E4403B;
           flex-shrink: 0;
-          box-shadow: 0 0 6px rgba(129,140,248,0.7);
+          box-shadow: 0 0 6px rgba(228, 64, 59, 0.7);
         }
 
-        /* Gallery Grid */
+        /* ── GALLERY GRID ─────────────────────────────────── */
         .ps-gallery {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
           gap: 1.2rem;
-          margin: 2rem 0 2rem;
+          margin: 2rem 0;
         }
 
         .ps-gallery-card {
@@ -1075,9 +1198,7 @@ const Portfolio = () => {
           transition: transform 0.2s ease;
         }
 
-        .ps-gallery-card:hover {
-          transform: scale(1.02);
-        }
+        .ps-gallery-card:hover { transform: scale(1.02); }
 
         .ps-gallery-img {
           display: block;
@@ -1096,23 +1217,26 @@ const Portfolio = () => {
           display: inline-flex;
           align-items: center;
           gap: 0.6rem;
-          background: linear-gradient(135deg, #4f46e5, #7c3aed);
+          background: linear-gradient(135deg, #E4403B, #c0392b);
           color: white;
           font-weight: 700;
           font-size: 1rem;
-          padding: 0.9rem 2rem;
-          border-radius: 999px;
+          padding: 13px 26px;
+          border-radius: 9999px;
           text-decoration: none;
-          box-shadow: 0 8px 20px rgba(79,70,229,0.4);
+          border: none;
+          cursor: pointer;
+          font-family: inherit;
+          box-shadow: 0 10px 28px rgba(228, 64, 59, 0.28);
           transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .ps-cta-btn:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 14px 28px rgba(79,70,229,0.5);
+          transform: translateY(-3px);
+          box-shadow: 0 18px 38px rgba(228, 64, 59, 0.38);
         }
 
-        /* Empty State */
+        /* ── EMPTY STATE ──────────────────────────────────── */
         .pf-empty {
           max-width: 560px;
           margin: 2rem auto 0;
@@ -1121,96 +1245,101 @@ const Portfolio = () => {
           padding: 2.5rem 1.8rem;
         }
 
-        .pf-empty h3 {
-          margin: 0 0 0.6rem;
-          color: #f8fafc;
-          font-size: 1.4rem;
+        .pf-empty h3 { margin: 0 0 0.6rem; color: #111111; font-size: 1.4rem; }
+        .pf-empty p { margin: 0; color: #64748B; }
+
+        /* ── BOTTOM CTA ───────────────────────────────────── */
+        .pf-bottom-cta {
+          padding: clamp(4.5rem, 8vw, 8rem) 1.5rem; text-align: center;
+          background:
+            radial-gradient(ellipse at 25% 60%, rgba(228,64,59,0.24), transparent 50%),
+            radial-gradient(ellipse at 78% 25%, rgba(228,64,59,0.16), transparent 48%),
+            linear-gradient(170deg, #1a0a08 0%, #2d1510 100%);
+          position: relative; overflow: hidden;
+        }
+        .pf-bottom-cta::before {
+          content: ""; position: absolute; inset: 0;
+          background-image:
+            linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+          background-size: 50px 50px; pointer-events: none;
+        }
+        .pf-bottom-cta-inner {
+          max-width: 620px; margin: 0 auto; position: relative; z-index: 1;
+        }
+        .pf-bottom-cta-badge {
+          display: inline-flex; align-items: center; gap: 8px;
+          padding: 7px 20px; border-radius: 999px;
+          background: rgba(228,64,59,0.14); border: 1px solid rgba(228,64,59,0.32);
+          color: #f8a09d; font-size: 0.75rem; font-weight: 700;
+          letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.5rem;
+        }
+        .pf-bottom-cta-h2 {
+          font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 800;
+          letter-spacing: -0.038em; line-height: 1.08;
+          color: #f8fafc; margin: 0 0 1rem;
+        }
+        .pf-bottom-cta-h2 em {
+          font-style: normal;
+          background: linear-gradient(135deg, #E4403B, #f87171);
+          background-clip: text; -webkit-background-clip: text; color: transparent;
+        }
+        .pf-bottom-cta-p {
+          font-size: 1.05rem; color: #94a3b8; line-height: 1.7;
+          margin: 0 auto 2.4rem; max-width: 480px;
+        }
+        .pf-bottom-cta-actions {
+          display: flex; align-items: center; justify-content: center;
+          gap: 1rem; flex-wrap: wrap;
+        }
+        .pf-bottom-cta-btn {
+          display: inline-flex; align-items: center; gap: 8px;
+          padding: 13px 26px; border-radius: 9999px;
+          background: linear-gradient(135deg, #E4403B, #c0392b);
+          color: #fff; font-weight: 700; font-size: 0.97rem;
+          border: none; cursor: pointer;
+          box-shadow: 0 10px 28px rgba(228,64,59,0.28);
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+          font-family: inherit;
+        }
+        .pf-bottom-cta-btn:hover {
+          transform: translateY(-3px); box-shadow: 0 18px 38px rgba(228,64,59,0.38);
+        }
+        .pf-bottom-cta-note {
+          font-size: 0.78rem; color: #475569; margin-top: 1.4rem;
         }
 
-        .pf-empty p {
-          margin: 0;
-          color: #94a3b8;
-        }
-
-        /* Responsive Adjustments */
+        /* ── RESPONSIVE ───────────────────────────────────── */
         @media (max-width: 900px) {
-          .ps-gallery {
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-          }
+          .ps-gallery { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
         }
 
         @media (max-width: 768px) {
-          .pf-root {
-            padding-left: 0.75rem;
-            padding-right: 0.75rem;
-          }
-
-          .pf-search-wrap {
-            flex-direction: column;
-            align-items: stretch;
-          }
-
-          .pf-clear-btn {
-            width: 100%;
-            text-align: center;
-          }
-
-          .pf-filters {
-            gap: 0.6rem;
-          }
-
-          .pf-cat-btn {
-            padding: 0.55rem 1rem;
-            font-size: 0.85rem;
-          }
-
-          .ps-service-grid {
-            grid-template-columns: 1fr;
-          }
-
-          .pf-section-label {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 0.2rem;
-          }
+          .pf-root { padding-left: 0.75rem; padding-right: 0.75rem; }
+          .pf-search-wrap { flex-direction: column; align-items: stretch; }
+          .pf-clear-btn { width: 100%; text-align: center; }
+          .pf-filters { gap: 0.6rem; }
+          .pf-cat-btn { padding: 0.55rem 1rem; font-size: 0.85rem; }
+          .ps-service-grid { grid-template-columns: 1fr; }
+          .pf-section-label { flex-direction: column; align-items: flex-start; gap: 0.2rem; }
+          .pf-trust-row { gap: 0.75rem; }
         }
 
         @media (max-width: 640px) {
-          .pf-title {
-            font-size: 1.8rem;
-          }
-
-          .pf-grid,
-          .pf-video-grid {
-            grid-template-columns: 1fr;
-          }
-
-          .pf-content,
-          .pf-video-content {
-            padding: 1.2rem;
-          }
-
-          .ps-gallery {
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-          }
-
-          .ps-cta-btn {
-            width: 100%;
-            justify-content: center;
-          }
+          .pf-title { font-size: 1.8rem; }
+          .pf-grid, .pf-video-grid { grid-template-columns: 1fr; }
+          .pf-content, .pf-video-content { padding: 1.2rem; }
+          .ps-gallery { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+          .ps-cta-btn { width: 100%; justify-content: center; }
+          .pf-bottom-cta-btn { width: 100%; justify-content: center; }
         }
 
         @media (max-width: 480px) {
-          .ps-gallery {
-            grid-template-columns: 1fr;
-          }
-          
-          .pf-card-title {
-            font-size: 1rem;
-          }
+          .ps-gallery { grid-template-columns: 1fr; }
+          .pf-card-title { font-size: 1rem; }
         }
       `}</style>
-    </section>
+    </div>
   );
 };
 

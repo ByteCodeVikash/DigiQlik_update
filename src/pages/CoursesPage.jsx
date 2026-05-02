@@ -77,7 +77,7 @@ const COURSES = [
     price: '₹2,999',
     original: '₹5,999',
     badge: null,
-    g: ['#2D3E50', '#1e293b'],
+    g: ['#2D3E50', '#111111'],
     icon: Search,
     outcomes: [
       'Perform full SEO audits on any website',
@@ -287,7 +287,7 @@ const COURSES = [
     price: '₹3,499',
     original: '₹6,999',
     badge: null,
-    g: ['#E4403B', '#1e293b'],
+    g: ['#E4403B', '#111111'],
     icon: ShoppingCart,
     outcomes: [
       'Launch and grow products on Amazon, Flipkart, and D2C',
@@ -365,7 +365,7 @@ export default function CoursesPage() {
            ║  COURSE MARKETPLACE PAGE  ·  .cmp prefix        ║
            ╚══════════════════════════════════════════════════╝ */
 
-        .cmp { font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif; }
+        .cmp { font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif; background: #fff; }
 
         /* ── shared helpers ─────────────────────────────── */
         .cmp-tag {
@@ -375,11 +375,12 @@ export default function CoursesPage() {
           background: #ffebeb; color: #E4403B;
           padding: 0.3rem 1rem; border-radius: 40px;
           margin-bottom: 0.75rem;
+          border: 1px solid rgba(228, 64, 59, 0.2);
         }
         .cmp-h2 {
           font-size: clamp(1.85rem, 4vw, 2.9rem);
           font-weight: 800; letter-spacing: -0.032em;
-          color: #0f172a; margin: 0 0 0.55rem; line-height: 1.12;
+          color: #1e293b; margin: 0 0 0.55rem; line-height: 1.12;
         }
         .cmp-h2 em { font-style: normal;
           background: linear-gradient(135deg, #E4403B, #c0392b);
@@ -410,18 +411,21 @@ export default function CoursesPage() {
         /* ── 1. HERO ─────────────────────────────────────── */
         .cmp-hero {
           padding: clamp(80px, 11vw, 130px) 1.5rem clamp(70px, 9vw, 110px);
-          background:
-            radial-gradient(ellipse at 15% 50%, rgba(228,64,59,0.22) 0%, transparent 50%),
-            radial-gradient(ellipse at 85% 20%, rgba(228,64,59,0.14) 0%, transparent 45%),
-            linear-gradient(170deg, #1a0a08 0%, #2d1510 100%);
+          background: var(--gradient-dark-master);
           position: relative; overflow: hidden; text-align: center;
         }
         .cmp-hero::before {
           content: "";
           position: absolute; inset: 0;
+          background: var(--gradient-glow-master);
+          pointer-events: none;
+        }
+        .cmp-hero::after {
+          content: "";
+          position: absolute; inset: 0;
           background-image:
-            linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px);
+            linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
           background-size: 50px 50px;
           pointer-events: none;
         }
@@ -436,14 +440,14 @@ export default function CoursesPage() {
         .cmp-hero-h1 {
           font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 800;
           line-height: 1.06; letter-spacing: -0.038em;
-          color: #f8fafc; margin: 0 0 1.2rem;
+          color: var(--text-main-dark); margin: 0 0 1.2rem;
         }
         .cmp-hero-h1 em { font-style: normal;
           background: linear-gradient(135deg, #E4403B, #f87171);
           background-clip: text; -webkit-background-clip: text; color: transparent;
         }
         .cmp-hero-p {
-          font-size: clamp(1rem, 2vw, 1.15rem); color: #94a3b8;
+          font-size: clamp(1rem, 2vw, 1.15rem); color: var(--text-muted-dark);
           line-height: 1.72; margin: 0 auto 2rem; max-width: 560px;
         }
         .cmp-trust-row {
@@ -460,8 +464,8 @@ export default function CoursesPage() {
 
         /* ── 2. BENEFITS ─────────────────────────────────── */
         .cmp-benefits {
-          background: #f1f5f9;
-          border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;
+          background: #fff;
+          border-top: 1px solid rgba(0,0,0,0.05); border-bottom: 1px solid rgba(0,0,0,0.05);
         }
         .cmp-benefits-inner {
           max-width: 1200px; margin: 0 auto;
@@ -470,22 +474,27 @@ export default function CoursesPage() {
         .cmp-benefit {
           display: flex; align-items: flex-start; gap: 14px;
           padding: 1.6rem 1.75rem;
-          border-right: 1px solid #e2e8f0;
+          border-right: 1px solid rgba(0,0,0,0.05);
           background: #fff;
           transition: background 0.2s ease;
         }
         .cmp-benefit:last-child { border-right: none; }
-        .cmp-benefit:hover { background: #fafafa; }
+        .cmp-benefit:hover { background: #f8fafc; }
         .cmp-benefit-icon {
           width: 46px; height: 46px; border-radius: 13px; flex-shrink: 0;
-          background: linear-gradient(135deg, #ffebeb, #ffdada);
+          background: #ffebeb;
           display: flex; align-items: center; justify-content: center; color: #E4403B;
         }
-        .cmp-benefit h4 { font-size: 0.95rem; font-weight: 700; color: #0f172a; margin: 0 0 4px; }
+        .cmp-benefit h4 { font-size: 0.95rem; font-weight: 700; color: #1e293b; margin: 0 0 4px; }
         .cmp-benefit p { font-size: 0.82rem; color: #64748b; margin: 0; line-height: 1.5; }
 
         /* ── 3. CATALOG ──────────────────────────────────── */
-        .cmp-catalog { background: #f8fafc; padding: clamp(3.5rem, 6vw, 6rem) 1.5rem; }
+        .cmp-catalog { background: #f8fafc; padding: clamp(3.5rem, 6vw, 6rem) 1.5rem; position: relative; }
+        .cmp-catalog::before {
+          content: "";
+          position: absolute; top: 0; left: 0; right: 0; height: 1px;
+          background: linear-gradient(90deg, transparent, rgba(228, 64, 59, 0.1), transparent);
+        }
         .cmp-catalog-inner { max-width: 1200px; margin: 0 auto; }
         .cmp-catalog-header { text-align: center; margin-bottom: 2.5rem; }
         .cmp-filters {
@@ -495,11 +504,11 @@ export default function CoursesPage() {
         .cmp-filter {
           padding: 8px 20px; border-radius: 999px; font-size: 0.85rem;
           font-weight: 600; cursor: pointer; border: 1.5px solid #e2e8f0;
-          background: #fff; color: #475569;
+          background: #fff; color: #64748b;
           transition: all 0.18s ease;
         }
-        .cmp-filter:hover:not(.active) { border-color: #cbd5e1; }
-        .cmp-filter.active { background: #0f172a; color: #fff; border-color: #0f172a; }
+        .cmp-filter:hover:not(.active) { border-color: rgba(228,64,59,0.3); color: #1e293b; }
+        .cmp-filter.active { background: #E4403B; color: #fff; border-color: #E4403B; box-shadow: 0 8px 20px rgba(228,64,59,0.25); }
         .cmp-filter.beginner.active { background: #16a34a; border-color: #16a34a; }
         .cmp-filter.intermediate.active { background: #E4403B; border-color: #E4403B; }
         .cmp-filter.advanced.active { background: #2D3E50; border-color: #2D3E50; }
@@ -507,11 +516,12 @@ export default function CoursesPage() {
         .cmp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(268px,1fr)); gap: 1.25rem; }
 
         .cmp-card {
-          background: #fff; border: 1px solid #e8edf2; border-radius: 20px;
+          background: #fff;
+          border: 1px solid #e2e8f0; border-radius: 20px;
           overflow: hidden; display: flex; flex-direction: column;
-          transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+          transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .cmp-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px -12px rgba(0,0,0,0.14); border-color: #cbd5e1; }
+        .cmp-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); border-color: rgba(228, 64, 59, 0.3); }
 
         .cmp-card-thumb {
           height: 110px; position: relative; overflow: hidden;
@@ -534,7 +544,7 @@ export default function CoursesPage() {
         .cmp-card-badge.hot { background: #2D3E50; color: #fff; }
 
         .cmp-card-body { padding: 1.3rem; flex: 1; display: flex; flex-direction: column; gap: 0.7rem; }
-        .cmp-card-title { font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0; line-height: 1.3; }
+        .cmp-card-title { font-size: 1.02rem; font-weight: 700; color: #1e293b; margin: 0; line-height: 1.3; }
         .cmp-card-desc { font-size: 0.84rem; color: #64748b; line-height: 1.55; margin: 0; flex: 1; }
         .cmp-card-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
         .cmp-level-badge {
@@ -552,7 +562,7 @@ export default function CoursesPage() {
           border-top: 1px solid #f1f5f9;
         }
         .cmp-price-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 0.8rem; }
-        .cmp-price { font-size: 1.55rem; font-weight: 900; color: #0f172a; letter-spacing: -0.03em; }
+        .cmp-price { font-size: 1.55rem; font-weight: 900; color: #1e293b; letter-spacing: -0.03em; }
         .cmp-price-original { font-size: 0.9rem; color: #94a3b8; text-decoration: line-through; }
         .cmp-card-ctas { display: flex; gap: 0.6rem; }
         .cmp-buy-btn {
@@ -567,19 +577,19 @@ export default function CoursesPage() {
         .cmp-buy-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(228,64,59,0.35); }
         .cmp-details-btn {
           padding: 10px 14px; border-radius: 10px;
-          background: #f8fafc; color: #475569; font-weight: 600;
+          background: #f8fafc; color: #64748b; font-weight: 600;
           font-size: 0.88rem; border: 1px solid #e2e8f0; cursor: pointer;
-          transition: background 0.18s ease, border-color 0.18s ease;
+          transition: all 0.18s ease;
           white-space: nowrap;
         }
-        .cmp-details-btn:hover { background: #f1f5f9; border-color: #cbd5e1; color: #0f172a; }
+        .cmp-details-btn:hover { background: #f1f5f9; border-color: #cbd5e1; color: #1e293b; }
 
         /* ── 4. BUNDLE ───────────────────────────────────── */
-        .cmp-bundle-section { background: #fff; padding: clamp(3rem, 5vw, 5rem) 1.5rem; border-top: 1px solid #f1f5f9; }
+        .cmp-bundle-section { background: var(--bg-deep-master); padding: clamp(3rem, 5vw, 5rem) 1.5rem; border-top: 1px solid rgba(255,255,255,0.05); }
         .cmp-bundle-inner { max-width: 1000px; margin: 0 auto; }
         .cmp-bundle-card {
-          background: linear-gradient(140deg, #0f172a 0%, #1e293b 100%);
-          border: 1px solid rgba(249,115,22,0.22);
+          background: linear-gradient(140deg, #1a1010 0%, #111111 100%);
+          border: 1px solid rgba(228, 64, 59, 0.22);
           border-radius: 28px; overflow: hidden; position: relative;
           padding: clamp(2rem, 4vw, 3.5rem);
           box-shadow: 0 30px 70px -20px rgba(0,0,0,0.4);
@@ -587,15 +597,15 @@ export default function CoursesPage() {
         .cmp-bundle-card::before {
           content: "";
           position: absolute; inset: 0;
-          background: radial-gradient(ellipse at 80% 20%, rgba(249,115,22,0.1), transparent 55%);
+          background: radial-gradient(ellipse at 80% 20%, rgba(228, 64, 59, 0.1), transparent 55%);
           pointer-events: none;
         }
         .cmp-bundle-wrap { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 3rem; align-items: center; position: relative; z-index: 1; }
         .cmp-bundle-label {
           display: inline-flex; align-items: center; gap: 7px;
           padding: 6px 14px; border-radius: 999px;
-          background: rgba(251,191,36,0.14); border: 1px solid rgba(251,191,36,0.28);
-          color: #fbbf24; font-size: 0.72rem; font-weight: 700;
+          background: rgba(228, 64, 59, 0.14); border: 1px solid rgba(228, 64, 59, 0.28);
+          color: #f8a09d; font-size: 0.72rem; font-weight: 700;
           text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 1.25rem;
         }
         .cmp-bundle-h3 {
@@ -634,7 +644,12 @@ export default function CoursesPage() {
         .cmp-bundle-note { font-size: 0.75rem; color: #475569; margin-top: 0.75rem; }
 
         /* ── 5. HOW IT WORKS ─────────────────────────────── */
-        .cmp-how { background: #f8fafc; padding: clamp(3rem, 5vw, 5rem) 1.5rem; border-top: 1px solid #e2e8f0; }
+        .cmp-how { background: #fff; padding: clamp(3rem, 5vw, 5rem) 1.5rem; border-top: 1px solid rgba(0,0,0,0.05); position: relative; }
+        .cmp-how::before {
+          content: "";
+          position: absolute; top: 0; left: 0; right: 0; height: 1px;
+          background: linear-gradient(90deg, transparent, rgba(228, 64, 59, 0.1), transparent);
+        }
         .cmp-how-inner { max-width: 900px; margin: 0 auto; }
         .cmp-how-header { text-align: center; margin-bottom: 3rem; }
         .cmp-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
@@ -652,33 +667,33 @@ export default function CoursesPage() {
           font-size: 1.1rem; font-weight: 900; color: #fff;
           box-shadow: 0 12px 28px rgba(228,64,59,0.28);
         }
-        .cmp-step h4 { font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 0.5rem; }
+        .cmp-step h4 { font-size: 1.05rem; font-weight: 700; color: #1e293b; margin: 0 0 0.5rem; }
         .cmp-step p { font-size: 0.87rem; color: #64748b; line-height: 1.6; margin: 0; }
 
         /* ── 6. TRUST ────────────────────────────────────── */
-        .cmp-trust-section { background: #fff; padding: clamp(3rem, 5vw, 5rem) 1.5rem; border-top: 1px solid #f1f5f9; }
+        .cmp-trust-section { background: #f8fafc; padding: clamp(3rem, 5vw, 5rem) 1.5rem; border-top: 1px solid rgba(0,0,0,0.05); }
         .cmp-trust-inner { max-width: 1100px; margin: 0 auto; }
         .cmp-trust-header { text-align: center; margin-bottom: 2.5rem; }
         .cmp-stats-row {
           display: grid; grid-template-columns: repeat(4,1fr); gap: 1.25rem; margin-bottom: 3rem;
         }
         .cmp-stat {
-          background: #f8fafc; border: 1px solid #e8edf2; border-radius: 18px;
+          background: #fff; border: 1px solid #e2e8f0; border-radius: 18px;
           padding: 1.5rem; text-align: center;
           transition: transform 0.2s ease;
         }
-        .cmp-stat:hover { transform: translateY(-3px); }
-        .cmp-stat-val { font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 900; color: #0f172a; letter-spacing: -0.03em; line-height: 1; }
+        .cmp-stat:hover { transform: translateY(-3px); border-color: rgba(228, 64, 59, 0.3); }
+        .cmp-stat-val { font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 900; color: #1e293b; letter-spacing: -0.03em; line-height: 1; }
         .cmp-stat-label { font-size: 0.82rem; color: #64748b; margin-top: 6px; font-weight: 600; }
         .cmp-reviews { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
         .cmp-review {
-          background: #f8fafc; border: 1px solid #e8edf2; border-radius: 20px;
+          background: #fff; border: 1px solid #e2e8f0; border-radius: 20px;
           padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
+          transition: all 0.25s ease;
         }
-        .cmp-review:hover { transform: translateY(-4px); box-shadow: 0 14px 35px -8px rgba(0,0,0,0.09); }
+        .cmp-review:hover { transform: translateY(-4px); box-shadow: 0 15px 30px rgba(0,0,0,0.05); border-color: rgba(228, 64, 59, 0.3); }
         .cmp-stars { display: flex; gap: 3px; }
-        .cmp-review-text { font-size: 0.9rem; color: #334155; line-height: 1.68; margin: 0; font-style: italic; flex: 1; }
+        .cmp-review-text { font-size: 0.9rem; color: #475569; line-height: 1.68; margin: 0; font-style: italic; flex: 1; }
         .cmp-review-course {
           font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
           letter-spacing: 0.1em; color: #E4403B; background: #ffebeb;
@@ -691,8 +706,8 @@ export default function CoursesPage() {
           display: flex; align-items: center; justify-content: center;
           font-size: 0.9rem; font-weight: 700; color: #fff; flex-shrink: 0;
         }
-        .cmp-reviewer-name { font-size: 0.9rem; font-weight: 700; color: #0f172a; }
-        .cmp-reviewer-role { font-size: 0.78rem; color: #64748b; }
+        .cmp-reviewer-name { font-size: 0.9rem; font-weight: 700; color: #1e293b; }
+        .cmp-reviewer-role { font-size: 0.78rem; color: #94a3b8; }
 
         /* ── 7. FINAL CTA ────────────────────────────────── */
         .cmp-cta {
@@ -727,21 +742,22 @@ export default function CoursesPage() {
         /* ── MODAL ───────────────────────────────────────── */
         .cmp-overlay {
           position: fixed; inset: 0; z-index: 9999;
-          background: rgba(2,6,23,0.78); backdrop-filter: blur(6px);
+          background: rgba(0,0,0,0.82); backdrop-filter: blur(6px);
           display: flex; align-items: center; justify-content: center;
           padding: 1rem; animation: cmpFadeIn 0.22s ease;
         }
         @keyframes cmpFadeIn { from { opacity: 0; } to { opacity: 1; } }
         .cmp-modal {
-          background: #fff; border-radius: 24px; width: 100%; max-width: 680px;
+          background: var(--bg-dark-master); border: var(--border-master); border-radius: 24px; width: 100%; max-width: 680px;
           max-height: 90vh; overflow: hidden; display: flex; flex-direction: column;
-          box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+          box-shadow: 0 40px 100px rgba(0,0,0,0.8);
           animation: cmpSlideUp 0.26s cubic-bezier(0.34,1.56,0.64,1);
+          color: var(--text-main-dark);
         }
         @keyframes cmpSlideUp { from { transform: translateY(24px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         .cmp-modal-head {
           padding: 1.75rem 1.75rem 1.25rem; flex-shrink: 0;
-          border-bottom: 1px solid #f1f5f9; position: relative;
+          border-bottom: 1px solid rgba(255,255,255,0.08); position: relative;
         }
         .cmp-modal-thumb {
           height: 90px; border-radius: 16px; margin-bottom: 1rem;
@@ -756,13 +772,13 @@ export default function CoursesPage() {
         .cmp-modal-close {
           position: absolute; top: 1.25rem; right: 1.25rem;
           width: 36px; height: 36px; border-radius: 10px;
-          background: #f1f5f9; border: none; cursor: pointer;
-          display: flex; align-items: center; justify-content: center; color: #64748b;
-          transition: background 0.18s ease, color 0.18s ease;
+          background: rgba(255,255,255,0.05); border: none; cursor: pointer;
+          display: flex; align-items: center; justify-content: center; color: var(--text-muted-dark);
+          transition: all 0.18s ease;
         }
-        .cmp-modal-close:hover { background: #e2e8f0; color: #0f172a; }
-        .cmp-modal-title { font-size: 1.4rem; font-weight: 800; color: #0f172a; margin: 0 0 0.4rem; line-height: 1.25; }
-        .cmp-modal-subtitle { font-size: 0.9rem; color: #64748b; margin: 0; line-height: 1.55; }
+        .cmp-modal-close:hover { background: rgba(255,255,255,0.1); color: #fff; }
+        .cmp-modal-title { font-size: 1.4rem; font-weight: 800; color: var(--text-main-dark); margin: 0 0 0.4rem; line-height: 1.25; }
+        .cmp-modal-subtitle { font-size: 0.9rem; color: var(--text-muted-dark); margin: 0; line-height: 1.55; }
         .cmp-modal-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem; }
         .cmp-modal-chip {
           font-size: 0.76rem; font-weight: 600; padding: 4px 10px;
@@ -770,16 +786,16 @@ export default function CoursesPage() {
           display: flex; align-items: center; gap: 5px;
         }
         .cmp-modal-body { padding: 1.5rem 1.75rem; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 1.5rem; }
-        .cmp-modal-section-title { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #94a3b8; margin: 0 0 0.75rem; }
+        .cmp-modal-section-title { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #64748b; margin: 0 0 0.75rem; }
         .cmp-modal-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
-        .cmp-modal-list li { display: flex; align-items: flex-start; gap: 9px; font-size: 0.9rem; color: #334155; line-height: 1.5; }
+        .cmp-modal-list li { display: flex; align-items: flex-start; gap: 9px; font-size: 0.9rem; color: #475569; line-height: 1.5; }
         .cmp-modal-list li svg { flex-shrink: 0; margin-top: 2px; }
         .cmp-modal-foot {
-          padding: 1.25rem 1.75rem; border-top: 1px solid #f1f5f9; flex-shrink: 0;
+          padding: 1.25rem 1.75rem; border-top: 1px solid rgba(255,255,255,0.08); flex-shrink: 0;
           display: flex; align-items: center; justify-content: space-between; gap: 1rem;
         }
-        .cmp-modal-price { font-size: 1.7rem; font-weight: 900; color: #0f172a; letter-spacing: -0.03em; line-height: 1; }
-        .cmp-modal-orig { font-size: 0.88rem; color: #94a3b8; text-decoration: line-through; margin-top: 2px; }
+        .cmp-modal-price { font-size: 1.7rem; font-weight: 900; color: var(--text-main-dark); letter-spacing: -0.03em; line-height: 1; }
+        .cmp-modal-orig { font-size: 0.88rem; color: var(--text-dim-dark); text-decoration: line-through; margin-top: 2px; }
         .cmp-modal-buy {
           display: flex; align-items: center; gap: 8px;
           padding: 12px 28px; border-radius: 12px;

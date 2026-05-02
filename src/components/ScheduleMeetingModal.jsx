@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { X, User, Phone, Mail, Briefcase, Loader2 } from "lucide-react";
+import { X, User, Phone, Mail, Briefcase, Loader2, MessageSquare } from "lucide-react";
 import "./ScheduleMeetingModal.css";
 import { submitToSheets } from "../utils/googleSheets";
 
 const STORAGE_KEY = "dq_popup_submitted";
 
-const ScheduleMeetingModal = ({ isOpen, onClose }) => {
+const ScheduleMeetingModal = ({ 
+  isOpen, 
+  onClose, 
+  title = "Grow Your Business", 
+  subtitle = "Free strategy call — no commitments.", 
+  emoji = "🚀", 
+  formType = "Schedule Meeting",
+  showMessageField = false
+}) => {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [email, setEmail] = useState("");
   const [companyName, setCompanyName] = useState("");
+  const [message, setMessage] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [status, setStatus] = useState("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -23,6 +32,7 @@ const ScheduleMeetingModal = ({ isOpen, onClose }) => {
     setNumber("");
     setEmail("");
     setCompanyName("");
+    setMessage("");
     setStatus("idle");
     setErrorMsg("");
   };
@@ -38,20 +48,21 @@ const ScheduleMeetingModal = ({ isOpen, onClose }) => {
     setStatus("loading");
     setErrorMsg("");
 
-   const { success, message } = await submitToSheets({
-  formType: "Schedule Meeting",
-  name,
-  number,
-  email,
-  companyName,
-});
+    const { success, message: responseMsg } = await submitToSheets({
+      formType,
+      name,
+      number,
+      email,
+      companyName,
+      message: message || "N/A",
+    });
 
     if (success) {
       setStatus("success");
       localStorage.setItem(STORAGE_KEY, "1");
     } else {
       setStatus("error");
-      setErrorMsg(message || "Something went wrong");
+      setErrorMsg(responseMsg || "Something went wrong");
     }
   };
 
@@ -87,9 +98,9 @@ const ScheduleMeetingModal = ({ isOpen, onClose }) => {
 ) : (
           <>
             <div className="spm-header">
-              <div className="spm-emoji">🚀</div>
-              <h2 className="spm-title">Grow Your Business</h2>
-              <p className="spm-sub">Free strategy call — no commitments.</p>
+              <div className="spm-emoji">{emoji}</div>
+              <h2 className="spm-title">{title}</h2>
+              <p className="spm-sub">{subtitle}</p>
             </div>
 
             <form className="spm-form" onSubmit={handleSubmit}>
@@ -148,6 +159,21 @@ const ScheduleMeetingModal = ({ isOpen, onClose }) => {
                   />
                 </div>
               </div>
+
+              {showMessageField && (
+                <div className="spm-field">
+                  <div className="spm-input-wrap spm-message">
+                    <MessageSquare size={16} />
+                    <textarea
+                      placeholder="Project Requirements / Message *"
+                      required
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      disabled={status === "loading"}
+                    />
+                  </div>
+                </div>
+              )}
 
               {status === "error" && <p className="spm-error">⚠️ {errorMsg}</p>}
 
