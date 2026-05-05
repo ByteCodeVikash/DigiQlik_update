@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
   ArrowRight,
   Award,
@@ -21,6 +22,8 @@ import {
   X,
   Zap,
 } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+import axios from 'axios';
 
 /* ─── WhatsApp helper ─────────────────────────────────── */
 const wa = (msg) =>
@@ -347,8 +350,53 @@ const STATS = [
 
 /* ══════════════════════════════════════════════════════════ */
 export default function CoursesPage() {
+  const { user, openAuthModal, login } = useAuth();
   const [selected, setSelected] = useState(null);
   const [filter, setFilter] = useState('All');
+  const [purchasing, setPurchasing] = useState(null);
+
+  const handlePurchase = async (e, courseId, itemTitle) => {
+    if (!user) {
+      e.preventDefault();
+      openAuthModal('login');
+      return;
+    }
+
+    // In a real production app, we would redirect to a payment page.
+    // For now, we simulate the intent -> verify flow.
+    e.preventDefault();
+    setPurchasing(courseId);
+    
+    try {
+      const token = localStorage.getItem('studentToken');
+      // Step 1: Record Intent
+      await axios.post('/api/purchase/intent', { courseId }, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      // Step 2: Verification (Simulated Success)
+      const verifyRes = await axios.post('/api/purchase/verify', { 
+        courseId, 
+        transactionId: 'mock_tx_' + Date.now() 
+      }, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      if (verifyRes.data.success) {
+        alert(`Success! You are now enrolled in ${itemTitle}. Redirecting to dashboard...`);
+        // We need to update the local user state to reflect the new plan
+        // The verify API returns the updated plan list, but our AuthContext 
+        // needs to re-fetch or we manually update if supported.
+        // For simplicity, we just navigate to dashboard which re-fetches.
+        window.location.href = '/courses/student-dashboard';
+      }
+    } catch (err) {
+      console.error('Purchase failed:', err);
+      alert('Purchase failed. Please try again.');
+    } finally {
+      setPurchasing(null);
+    }
+  };
 
   useEffect(() => {
     document.body.style.overflow = selected ? 'hidden' : '';
@@ -360,6 +408,17 @@ export default function CoursesPage() {
 
   return (
     <div className="cmp">
+      {user && (
+        <div className="cmp-student-bar">
+          <div className="cmp-student-info">
+            <div className="cmp-student-avatar">{user.name.charAt(0).toUpperCase()}</div>
+            <span>Logged in as {user.name}</span>
+          </div>
+          <Link to="/courses/student-dashboard" className="cmp-dash-link">
+            Access Learning Dashboard <ArrowRight size={16} />
+          </Link>
+        </div>
+      )}
       <style>{`
         /* ╔══════════════════════════════════════════════════╗
            ║  COURSE MARKETPLACE PAGE  ·  .cmp prefix        ║
@@ -739,6 +798,31 @@ export default function CoursesPage() {
         .cmp-cta-actions { display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; }
         .cmp-cta-note { font-size: 0.78rem; color: #475569; margin-top: 1.4rem; letter-spacing: 0.01em; }
 
+        /* ── STUDENT SESSION BAR ── */
+        .cmp-student-bar {
+          background: rgba(228, 64, 59, 0.08);
+          border-bottom: 1px solid rgba(228, 64, 59, 0.15);
+          padding: 12px 1.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 15px;
+          position: sticky;
+          top: 0;
+          z-index: 100;
+          backdrop-filter: blur(10px);
+        }
+        .cmp-student-info { display: flex; align-items: center; gap: 8px; color: #1e293b; font-weight: 600; font-size: 0.9rem; }
+        .cmp-student-avatar { width: 28px; height: 28px; border-radius: 50%; background: #E4403B; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; }
+        .cmp-dash-link {
+          display: inline-flex; align-items: center; gap: 6px;
+          color: #E4403B; font-weight: 700; font-size: 0.9rem;
+          text-decoration: none; padding: 6px 16px; border-radius: 8px;
+          background: #fff; border: 1px solid rgba(228, 64, 59, 0.2);
+          transition: all 0.2s;
+        }
+        .cmp-dash-link:hover { background: #E4403B; color: #fff; border-color: #E4403B; }
+
         /* ── MODAL ───────────────────────────────────────── */
         .cmp-overlay {
           position: fixed; inset: 0; z-index: 9999;
@@ -878,6 +962,15 @@ export default function CoursesPage() {
             >
               Get Guidance
             </a>
+            {user ? (
+              <button className="cmp-btn-ghost" onClick={() => navigate('/courses/student-dashboard')}>
+                Dashboard
+              </button>
+            ) : (
+              <button className="cmp-btn-ghost" onClick={() => openAuthModal('login')}>
+                Student Login
+              </button>
+            )}
           </div>
         </div>
       </section>
@@ -983,9 +1076,17 @@ export default function CoursesPage() {
                           )}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="cmp-buy-btn"
+                          className={`cmp-buy-btn ${purchasing === course.id ? 'loading' : ''}`}
+                          onClick={(e) => handlePurchase(e, course.id, course.title)}
                         >
-                          Buy Now
+                          {purchasing === course.id ? (
+                            'Processing...'
+                          ) : (
+                            <>
+                              {course.id.includes('workshop') ? 'Join Workshop' : (course.price.includes('₹') ? 'Buy Course' : 'Enroll Now')}
+                              <ArrowRight size={15} />
+                            </>
+                          )}
                         </a>
                         <button
                           className="cmp-details-btn"
@@ -1040,9 +1141,10 @@ export default function CoursesPage() {
                   )}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="cmp-bundle-buy"
+                  className={`cmp-bundle-buy ${purchasing === 'all-access' ? 'loading' : ''}`}
+                  onClick={(e) => handlePurchase(e, 'all-access', 'All-Access Bundle')}
                 >
-                  Get All-Access <ArrowRight size={16} />
+                  {purchasing === 'all-access' ? 'Enrolling...' : <>Get All-Access <ArrowRight size={16} /></>}
                 </a>
                 <p className="cmp-bundle-note">
                   Includes all 8 courses · Certificate for each
@@ -1265,9 +1367,17 @@ export default function CoursesPage() {
                 )}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="cmp-modal-buy"
+                className={`cmp-modal-buy ${purchasing === selected.id ? 'loading' : ''}`}
+                onClick={(e) => handlePurchase(e, selected.id, selected.title)}
               >
-                Buy Now <ArrowRight size={15} />
+                {purchasing === selected.id ? (
+                  'Processing...'
+                ) : (
+                  <>
+                    {selected.id.includes('workshop') ? 'Join Workshop' : (selected.price.includes('₹') ? 'Buy Course' : 'Enroll Now')}
+                    <ArrowRight size={15} />
+                  </>
+                )}
               </a>
             </div>
           </div>

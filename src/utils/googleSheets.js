@@ -1,4 +1,4 @@
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx8rTsfdjYMwxzJWcNNlol-c1aBsIiLn4yydji2Z-YySf79hPJdF_mfWziNKBK2Mjk/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxFHrJlpu09lo8tBjY2nwEyW4dkTWquIAryTfbPKEBthnqzY014vNZ4IK-EZMOvYd0/exec";
 
 export async function submitToSheets(payload) {
   try {

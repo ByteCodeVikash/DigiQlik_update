@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { ArrowRight, Target, Menu, X, Phone } from "lucide-react";
+import { ArrowRight, Target, Menu, X, Phone, LayoutDashboard } from "lucide-react";
+import { useAuth } from "../context/AuthContext";
 import logoImage from "/logo.png";
 import FreeAuditModal from "./FreeAuditModal";
 import "./Header.css";
@@ -16,6 +17,7 @@ const NAV_LINKS = [
 ];
 
 const Header = ({ onBookCall }) => {
+  const { user } = useAuth();
   const [scrolled, setScrolled] = useState(false);
   const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -93,6 +95,13 @@ const Header = ({ onBookCall }) => {
               </NavLink>
             </li>
           ))}
+          {user && (
+            <li>
+              <NavLink to="/courses/student-dashboard" onClick={closeMobile} className="mobile-dashboard-link">
+                <LayoutDashboard size={20} /> Dashboard
+              </NavLink>
+            </li>
+          )}
         </ul>
 
         <div className="header-mobile-actions">
@@ -139,6 +148,13 @@ const Header = ({ onBookCall }) => {
                   <NavLink to={to} end={end || undefined}>{label}</NavLink>
                 </li>
               ))}
+              {user && (
+                <li>
+                  <NavLink to="/courses/student-dashboard" className="header-dashboard-link">
+                    <LayoutDashboard size={14} /> Dashboard
+                  </NavLink>
+                </li>
+              )}
             </ul>
           </nav>
 
