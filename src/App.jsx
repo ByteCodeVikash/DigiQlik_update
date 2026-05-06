@@ -49,7 +49,7 @@ function AppContent({ onBookCall, isScheduleModalOpen, handleCloseScheduleModal 
     <>
       <Chatbot />
       <StudentAuthModal />
-      <div className="app-wrapper">
+      <div className={`app-wrapper ${hideChrome ? 'admin-mode' : ''}`}>
         <ScheduleMeetingModal
           isOpen={isScheduleModalOpen}
           onClose={handleCloseScheduleModal}
