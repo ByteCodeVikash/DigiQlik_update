@@ -19,6 +19,12 @@ export const AuthProvider = ({ children }) => {
       return;
     }
 
+    if (token === 'mock_admin_token') {
+      setUser({ name: 'DigiQlik Admin', role: 'admin', email: 'admin@digiqlik.com' });
+      setLoading(false);
+      return;
+    }
+
     try {
       const res = await axios.get('/api/auth/me', {
         headers: { Authorization: `Bearer ${token}` }
@@ -41,24 +47,11 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('studentToken', res.data.token);
         setUser(res.data.user);
         setAuthModal({ isOpen: false, view: 'login' });
-        return { success: true };
+        return { success: true, user: res.data.user };
       }
     } catch (error) {
-      console.warn('Backend login failed, using local bypass:', error.message);
-      // [DEV BYPASS FALLBACK] Create a local session if backend fails
-      const mockUser = {
-        id: 'mock_' + Date.now(),
-        name: contact ? contact.split('@')[0] : 'Guest Student',
-        email: contact?.includes('@') ? contact : 'guest@mock.com',
-        phone: !contact?.includes('@') ? contact : '0000000000',
-        age: 20,
-        purchasedPlans: [],
-        accessStatus: 'active'
-      };
-      localStorage.setItem('studentToken', 'mock_token_' + Date.now());
-      setUser(mockUser);
-      setAuthModal({ isOpen: false, view: 'login' });
-      return { success: true };
+      console.error('Login failed:', error.response?.data?.message || error.message);
+      throw error; // re-throw so AdminLoginPage can catch it
     }
   };
 
@@ -72,21 +65,8 @@ export const AuthProvider = ({ children }) => {
         return { success: true };
       }
     } catch (error) {
-      console.warn('Backend signup failed, using local bypass:', error.message);
-      // [DEV BYPASS FALLBACK] Create a local session if backend fails
-      const mockUser = {
-        id: 'mock_' + Date.now(),
-        name: userData.name || 'New Student',
-        email: userData.email || 'guest@mock.com',
-        phone: userData.phone || '0000000000',
-        age: userData.age || 20,
-        purchasedPlans: [],
-        accessStatus: 'active'
-      };
-      localStorage.setItem('studentToken', 'mock_token_' + Date.now());
-      setUser(mockUser);
-      setAuthModal({ isOpen: false, view: 'login' });
-      return { success: true };
+      console.error('Signup failed:', error.response?.data?.message || error.message);
+      return { success: false, message: error.response?.data?.message || 'Signup failed' };
     }
   };
 
@@ -100,20 +80,8 @@ export const AuthProvider = ({ children }) => {
         return { success: true };
       }
     } catch (error) {
-      console.warn('Backend Google login failed, using local bypass:', error.message);
-      // [DEV BYPASS FALLBACK] Create a local session if backend fails
-      const mockUser = {
-        id: 'mock_google_' + Date.now(),
-        name: 'Google Student',
-        email: 'google@mock.com',
-        age: 22,
-        purchasedPlans: [],
-        accessStatus: 'active'
-      };
-      localStorage.setItem('studentToken', 'mock_token_google_' + Date.now());
-      setUser(mockUser);
-      setAuthModal({ isOpen: false, view: 'login' });
-      return { success: true };
+      console.error('Google Login failed:', error.response?.data?.message || error.message);
+      return { success: false, message: error.response?.data?.message || 'Google Login failed' };
     }
   };
 
@@ -130,6 +98,10 @@ export const AuthProvider = ({ children }) => {
     setAuthModal({ ...authModal, isOpen: false });
   };
 
+  const refreshUser = async () => {
+    await checkUser();
+  };
+
   return (
     <AuthContext.Provider value={{ 
       user, 
@@ -138,6 +110,7 @@ export const AuthProvider = ({ children }) => {
       signup, 
       googleLogin,
       logout, 
+      refreshUser,
       authModal, 
       openAuthModal, 
       closeAuthModal 
@@ -147,4 +120,8 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) throw new Error('useAuth must be used within an AuthProvider');
+  return context;
+};

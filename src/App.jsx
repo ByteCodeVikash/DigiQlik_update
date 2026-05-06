@@ -17,6 +17,9 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import CoursesPage from "./pages/CoursesPage";
 import StudentDashboard from "./pages/StudentDashboard";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminLoginPage from "./pages/AdminLoginPage";
+import { ProtectedRoute, AdminRoute } from "./components/RouteGuards";
 
 function App() {
   const [isScheduleModalOpen, setIsScheduleModalOpen] = useState(false);
@@ -51,7 +54,23 @@ function App() {
                 <Route path="/portfolio" element={<PortfolioPage />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/contact" element={<ContactPage />} />
-                <Route path="/courses/student-dashboard" element={<StudentDashboard />} />
+                <Route 
+                  path="/courses/student-dashboard" 
+                  element={
+                    <ProtectedRoute>
+                      <StudentDashboard />
+                    </ProtectedRoute>
+                  } 
+                />
+                <Route path="/admin/login" element={<AdminLoginPage />} />
+                <Route 
+                  path="/admin" 
+                  element={
+                    <AdminRoute>
+                      <AdminDashboard />
+                    </AdminRoute>
+                  } 
+                />
               </Routes>
 
               <Footer />

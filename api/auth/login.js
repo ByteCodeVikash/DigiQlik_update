@@ -23,16 +23,15 @@ export default async function handler(req, res) {
     });
 
     if (!user) {
-      // Create a mock user on the fly if not found
-      user = await User.create({
-        name: contact.split('@')[0], // Use part of email as name
-        email: contact.includes('@') ? contact : null,
-        phone: !contact.includes('@') ? contact : null,
-        password: 'mock_password',
-        age: 20,
-        purchasedPlans: [],
-        accessStatus: 'active'
-      });
+      return res.status(401).json({ success: false, message: 'Invalid credentials' });
+    }
+
+    // [DEV BYPASS] Verify password if exists
+    if (user.password && user.password !== 'mock_password') {
+       const isMatch = await bcrypt.compare(password, user.password);
+       if (!isMatch) {
+         return res.status(401).json({ success: false, message: 'Invalid credentials' });
+       }
     }
 
     // [DEV BYPASS] Skip password check
@@ -53,6 +52,7 @@ export default async function handler(req, res) {
         email: user.email,
         phone: user.phone,
         age: user.age,
+        role: user.role || 'student',
         purchasedPlans: user.purchasedPlans,
         accessStatus: user.accessStatus
       }

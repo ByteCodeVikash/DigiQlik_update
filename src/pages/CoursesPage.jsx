@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   ArrowRight,
   Award,
@@ -350,7 +350,8 @@ const STATS = [
 
 /* ══════════════════════════════════════════════════════════ */
 export default function CoursesPage() {
-  const { user, openAuthModal, login } = useAuth();
+  const { user, openAuthModal, login, refreshUser } = useAuth();
+  const navigate = useNavigate();
   const [selected, setSelected] = useState(null);
   const [filter, setFilter] = useState('All');
   const [purchasing, setPurchasing] = useState(null);
@@ -384,11 +385,8 @@ export default function CoursesPage() {
 
       if (verifyRes.data.success) {
         alert(`Success! You are now enrolled in ${itemTitle}. Redirecting to dashboard...`);
-        // We need to update the local user state to reflect the new plan
-        // The verify API returns the updated plan list, but our AuthContext 
-        // needs to re-fetch or we manually update if supported.
-        // For simplicity, we just navigate to dashboard which re-fetches.
-        window.location.href = '/courses/student-dashboard';
+        await refreshUser();
+        navigate('/courses/student-dashboard');
       }
     } catch (err) {
       console.error('Purchase failed:', err);

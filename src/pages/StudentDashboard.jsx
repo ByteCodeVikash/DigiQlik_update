@@ -24,6 +24,7 @@ const StudentDashboard = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('recorded'); // 'recorded', 'live', 'upcoming'
   const [content, setContent] = useState({ recorded: [], live: [], upcoming: [] });
+  const [notices, setNotices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedVideo, setSelectedVideo] = useState(null);
 
@@ -32,6 +33,7 @@ const StudentDashboard = () => {
       navigate('/courses');
     } else if (user) {
       fetchContent();
+      fetchNotices();
     }
   }, [user, authLoading]);
 
@@ -51,6 +53,17 @@ const StudentDashboard = () => {
       console.error('Fetch content failed:', err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchNotices = async () => {
+    try {
+      const res = await axios.get('/api/dashboard/notices');
+      if (res.data.success) {
+        setNotices(res.data.notices);
+      }
+    } catch (err) {
+      console.error('Fetch notices failed:', err);
     }
   };
 
@@ -235,6 +248,21 @@ const StudentDashboard = () => {
         </header>
 
         <div className="dashboard-content">
+          {notices.length > 0 && (
+            <div className="global-notices-container">
+              {notices.map(notice => (
+                <div key={notice._id} className={`notice-banner ${notice.type}`}>
+                  <div className="notice-icon">
+                    <i className="fas fa-bullhorn"></i>
+                  </div>
+                  <div className="notice-text">
+                    <strong>{notice.title}:</strong> {notice.content}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
           {(!user?.purchasedPlans || user.purchasedPlans.length === 0) ? (
             <UpsellView onPurchaseSuccess={handlePurchaseSuccess} />
           ) : (
